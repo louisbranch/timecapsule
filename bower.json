@@ -1,0 +1,19 @@
+{
+  "name": "timecapsule",
+  "version": "0.0.0",
+  "main": "components",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/lib",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "lodash": "~1.3.1",
+    "jquery": "~2.0.3",
+    "bootstrap": "~3.0.0-rc1",
+    "backbone": "~1.0.0",
+    "requirejs": "~2.1.8"
+  }
+}
