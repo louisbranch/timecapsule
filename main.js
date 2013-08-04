@@ -1,9 +1,9 @@
 requirejs.config({
-  baseUrl: 'modules/',
+  baseUrl: '/modules',
   paths: {
-    jquery: '../components/jquery/jquery',
-    backbone: '../components/backbone/backbone',
-    lodash: '../components/lodash/lodash'
+    jquery: '/components/jquery/jquery',
+    backbone: '/components/backbone/backbone',
+    lodash: '/components/lodash/lodash'
   },
   shim: {
     lodash: {
@@ -26,7 +26,7 @@ requirejs([
   Letter
 ) {
 
-  var letter = new Letter();
-  letter.render();
+  new Letter();
+  Backbone.history.start({pushState: true});
 
 });

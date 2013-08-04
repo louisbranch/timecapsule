@@ -1,13 +1,17 @@
 define(['jquery', 'backbone'], function ($, Backbone) {
 
-  var Main = Backbone.View.extend({
+  var Router = Backbone.Router.extend({
 
-    render: function () {
-      $('body').append('<h1>Letter</h1>');
+    routes: {
+      'letters/new' : 'form'
+    },
+
+    form: function () {
+      console.log('LETTER!');
     }
 
   });
 
-  return Main;
+  return Router;
 
 });
