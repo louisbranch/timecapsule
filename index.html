@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
 <head>
   <meta charset="utf-8">
   <title>Timecapsule</title>
   <link rel="stylesheet" type="text/css" href="/components/bootstrap/dist/css/bootstrap.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
+
+  <script id='app-layout' type='layout'>
+    <div class='navbar'>
+      <div class='container'>
+        <a href='/' class='navbar-brand'>Timecapsule</a>
+        <ul class='nav navbar-nav'>
+          <li>
+            <a href='/letters/new'>New Letter</a>
+          </li>
+        </ul>
+        <ul class='nav navbar-nav pull-right'>
+          <li id='entry-login'></li>
+          <li id='entry-signup'></li>
+        </ul>
+      </div>
+    </div>
+    <div id='main' class='container'></div>
+  </script>
+
   <script data-main="/main" src="/components/requirejs/require.js"></script>
 </body>

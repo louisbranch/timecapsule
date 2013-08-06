@@ -3,30 +3,79 @@ requirejs.config({
   paths: {
     jquery: '/components/jquery/jquery',
     backbone: '/components/backbone/backbone',
-    lodash: '/components/lodash/lodash'
+    bootstrap: '/components/bootstrap/dist/js/bootstrap',
+    underscore: '/components/underscore/underscore',
+    layoutmanager: '/components/layoutmanager/backbone.layoutmanager'
   },
   shim: {
-    lodash: {
+    underscore: {
       exports: '_'
     },
     backbone: {
-      deps: ['lodash', 'jquery'],
+      deps: ['underscore', 'jquery'],
       exports: 'Backbone'
+    },
+    layoutmanager: {
+      deps: ['backbone'],
+      exports: 'Backbone.Layout'
+    },
+    bootstrap: {
+      deps: ['jquery']
     }
   }
 });
 
 requirejs([
-  'lodash',
   'backbone',
-  'letter/main'
+  'bootstrap',
+  'mediator/main',
+  'app/main',
+  'home/main',
+  'letters/main',
+  'services/auto_links_service'
 ], function (
-  _,
   Backbone,
-  Letter
+  Boostrap,
+  Mediator,
+  App,
+  Home,
+  Letter,
+  AutoLinks
 ) {
 
-  new Letter();
+  /*
+   * Events mediator to communicate
+   * between modules
+   */
+  var mediator = new Mediator();
+
+  /*
+   * Main app structure and layout
+   */
+  var app = new App({mediator: mediator});
+
+  //TODO remove
+  mediator.on('all', function () {
+    console.log(arguments);
+  });
+
+  /*
+   * Load Services
+   */
+  new AutoLinks();
+
+  /*
+   * Load Modules
+   */
+  new Home({mediator: mediator});
+  new Letter({mediator: mediator});
+
+  /*
+   * Render initial app layout
+   */
+  app.$el.appendTo('body');
+  app.render();
+
   Backbone.history.start({pushState: true});
 
 });
