@@ -1,11 +1,20 @@
 requirejs.config({
   baseUrl: '/modules',
   paths: {
-    jquery: '/components/jquery/jquery',
-    backbone: '/components/backbone/backbone',
-    bootstrap: '/components/bootstrap/dist/js/bootstrap',
-    underscore: '/components/underscore/underscore',
-    layoutmanager: '/components/layoutmanager/backbone.layoutmanager'
+    jquery:
+      '/components/jquery/jquery',
+    backbone:
+      '/components/backbone/backbone',
+    bootstrap:
+      '/components/bootstrap/dist/js/bootstrap',
+    underscore:
+      '/components/underscore/underscore',
+    layoutmanager:
+      '/components/layoutmanager/backbone.layoutmanager',
+    localStorage:
+      '/components/backbone.localStorage/backbone.localStorage',
+    text:
+      '/components/requirejs-text/text'
   },
   shim: {
     underscore: {
@@ -27,6 +36,7 @@ requirejs.config({
 
 requirejs([
   'backbone',
+  'layoutmanager',
   'bootstrap',
   'mediator/main',
   'app/main',
@@ -35,13 +45,22 @@ requirejs([
   'services/auto_links_service'
 ], function (
   Backbone,
+  Layout,
   Boostrap,
   Mediator,
   App,
   Home,
   Letter,
-  AutoLinks
+  AutoLinksService
 ) {
+
+  /*
+   * Set all Backbone Views as manageable
+   * by LayoutManagar
+   */
+  Layout.configure({
+    manage: true
+  });
 
   /*
    * Events mediator to communicate
@@ -62,7 +81,7 @@ requirejs([
   /*
    * Load Services
    */
-  new AutoLinks();
+  new AutoLinksService();
 
   /*
    * Load Modules

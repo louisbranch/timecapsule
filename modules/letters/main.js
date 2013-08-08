@@ -1,11 +1,13 @@
 /*
- * Router for letters section
+ * Letters module router
  */
 define([
   'backbone',
+  'letters/models/letter',
   'letters/views/form'
 ], function (
   Backbone,
+  Letter,
   FormView
 ) {
 
@@ -16,11 +18,13 @@ define([
     },
 
     routes: {
-      'letters/new' : 'form'
+      'letters/new' : 'form',
+      'letters/:id' : 'form'
     },
 
-    form: function () {
-      var view = new FormView();
+    form: function (id) {
+      var model = new Letter({id: id});
+      var view = new FormView({model: model});
       this.mediator.trigger('render', view);
     }
 

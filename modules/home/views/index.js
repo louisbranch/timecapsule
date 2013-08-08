@@ -2,18 +2,16 @@
  * Index View
  */
 define([
-  'jquery',
-  'backbone'
+  'backbone',
+  'text!home/templates/home.html'
 ], function (
-  $,
-  Backbone
+  Backbone,
+  template
 ) {
 
   var View = Backbone.View.extend({
 
-    initialize: function () {
-      this.$el.html('<h1>Index</h1>');
-    }
+    template: template
 
   });
 

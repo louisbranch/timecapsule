@@ -1,12 +1,17 @@
-define(['layoutmanager'], function (Layout) {
-
-  Layout.configure({
-    manage: true
-  });
+/*
+ * Application skeleton layout
+ */
+define([
+  'layoutmanager',
+  'text!app/templates/layout.html'
+], function (
+  Layout,
+  template
+) {
 
   var App = Layout.extend({
 
-    template: '#app-layout',
+    template: template,
 
     initialize: function (options) {
       this.mediator = options.mediator;
@@ -19,6 +24,12 @@ define(['layoutmanager'], function (Layout) {
         root = root || '#main';
         this.setView(root, view.render());
       }, this);
+
+      /*
+       * TODO
+       * Change navigation active link when a
+       * route changes
+       */
     }
 
   });

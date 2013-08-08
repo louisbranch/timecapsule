@@ -1,9 +1,9 @@
 define(['jquery', 'backbone'], function ($, Backbone) {
 
   /*
-   * Hijack all click on lincks if they are on the same host
+   * Hijack all clicks on links if they are on the same host
    * and foward the path clicked to Backbone.history
-   * Skip this by adding data-bypass to the link
+   * Skip this by adding data-bypass attribute to the link
    */
   function AutoLinks() {
 

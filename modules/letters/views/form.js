@@ -2,17 +2,23 @@
  * Letters form view
  */
 define([
-  'jquery',
-  'backbone'
+  'backbone',
+  'text!letters/templates/form.html'
 ], function (
-  $,
-  Backbone
+  Backbone,
+  template
 ) {
 
   var View = Backbone.View.extend({
 
-    initialize: function () {
-      this.$el.html('<h1>Letters</h1>');
+    template: template,
+
+    events: {
+      'click button' : 'save'
+    },
+
+    save: function () {
+      this.model.save();
     }
 
   });
