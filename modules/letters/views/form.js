@@ -18,7 +18,8 @@ define([
     },
 
     save: function () {
-      this.model.save();
+      var text = this.$el.find('textarea').val();
+      this.model.save({content: text});
     }
 
   });
