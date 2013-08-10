@@ -20,16 +20,29 @@ define([
        * Render view inside app layout as
        * content root or inside custom selector
        */
-      this.mediator.on('render', function (view, root) {
-        root = root || '#main';
-        this.setView(root, view.render());
+      this.mediator.on('render', function (options) {
+        if (!options || !options.view) new Error('Render options required');
+        options.root = options.root || '#main';
+        this.activateUrl(options.url);
+        this.setView(options.root, options.view.render());
       }, this);
 
-      /*
-       * TODO
-       * Change navigation active link when a
-       * route changes
-       */
+    },
+
+    /*
+     * Change navigation active link when a
+     * section renders
+     */
+    activateUrl: function (url) {
+      this.$el
+        .find('.navbar li')
+        .removeClass('active');
+
+      if (!url) return;
+      this.$el
+        .find('a[href="'+ url  +'"]')
+        .closest('li')
+        .addClass('active');
     }
 
   });

@@ -12,3 +12,5 @@ app.get('^[^.]*$', function (req, res) {
 });
 
 app.listen(8080);
+
+console.log('Port 8080 gl hf');

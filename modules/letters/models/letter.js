@@ -10,6 +10,10 @@ define([
 
   var Model = Backbone.Model.extend({
 
+    defaults: {
+      content: ''
+    }
+
   });
 
   return Model;

@@ -11,7 +11,11 @@ define([
 
   var View = Backbone.View.extend({
 
-    template: template,
+    template: _.template(template),
+
+    initialize: function () {
+      this.listenTo(this.model, 'change', this.render);
+    },
 
     events: {
       'click button' : 'save'
@@ -20,6 +24,10 @@ define([
     save: function () {
       var text = this.$el.find('textarea').val();
       this.model.save({content: text});
+    },
+
+    serialize: function () {
+      return this.model.toJSON();
     }
 
   });

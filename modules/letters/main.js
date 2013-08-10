@@ -24,20 +24,29 @@ define([
 
     routes: {
       'letters'     : 'index',
-      'letters/new' : 'form',
-      'letters/:id' : 'form'
+      'letters/new' : 'create',
+      'letters/:id' : 'update'
     },
 
     index: function () {
       this.collection.fetch();
       var view = new IndexView({collection: this.collection});
-      this.mediator.trigger('render', view);
+      this.mediator.trigger('render', {view: view, url: '/letters'});
     },
 
-    form: function (id) {
+    create: function () {
+      this.form(null, '/letters/new');
+    },
+
+    update: function (id) {
+      this.form(id);
+    },
+
+    form: function (id, url) {
       var model = new Letter({id: id}, {collection: this.collection});
+      model.fetch();
       var view = new FormView({model: model});
-      this.mediator.trigger('render', view);
+      this.mediator.trigger('render', {view: view, url: url});
     }
 
   });

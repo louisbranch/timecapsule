@@ -16,9 +16,7 @@ define([
     template: _.template(template),
 
     initialize: function () {
-    },
-
-    events: {
+      this.listenTo(this.model, 'change', this.render);
     },
 
     serialize: function () {

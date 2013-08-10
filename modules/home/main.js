@@ -21,7 +21,7 @@ define([
 
     home: function () {
       var view = new IndexView();
-      this.mediator.trigger('render', view);
+      this.mediator.trigger('render', {view: view, url: '/'});
     }
 
   });

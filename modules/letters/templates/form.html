@@ -1,8 +1,12 @@
 <div>
-  <h3>New Letter</h3>
+  <% if (id) { %>
+    <h3>Edit Letter</h3>
+  <% } else { %>
+    <h3>New Letter</h3>
+  <% } %>
   <form>
     <div class='form-group'>
-      <textarea class='form-control input-lg' rows='10'></textarea>
+      <textarea class='form-control input-lg' rows='10'><%= content %></textarea>
     </div>
     <button type='button' class='btn btn-default'>Save</button>
   </form>
