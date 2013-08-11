@@ -18,6 +18,7 @@
     "layoutmanager": "~0.9.1",
     "underscore": "~1.5.1",
     "requirejs-text": "~2.0.10",
-    "backbone.localStorage": "~1.1.6"
+    "backbone.localStorage": "~1.1.6",
+    "font-awesome": "~3.2.1"
   }
 }
