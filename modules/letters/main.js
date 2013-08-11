@@ -43,8 +43,9 @@ define([
     },
 
     form: function (id, url) {
-      var model = new Letter({id: id}, {collection: this.collection});
-      model.fetch();
+      var model;
+      if (id) model = this.collection.get(id);
+      else    model = this.collection.create({});
       var view = new FormView({model: model});
       this.mediator.trigger('render', {view: view, url: url});
     }

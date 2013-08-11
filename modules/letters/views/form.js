@@ -18,16 +18,29 @@ define([
     },
 
     events: {
-      'click button' : 'save'
+      'click .btn-default' : 'save',
+      'click .btn-primary' : 'send'
     },
 
     save: function () {
-      var text = this.$el.find('textarea').val();
-      this.model.save({content: text});
+      var data = this.data();
+      this.model.save(data);
+    },
+
+    send: function () {
+      this.save();
+      this.model.send();
     },
 
     serialize: function () {
       return this.model.toJSON();
+    },
+
+    data: function () {
+      var content = this.$el.find('textarea').val();
+      return {
+        content: content
+      };
     }
 
   });

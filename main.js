@@ -5,8 +5,6 @@ requirejs.config({
       '/components/jquery/jquery',
     backbone:
       '/components/backbone/backbone',
-    bootstrap:
-      '/components/bootstrap/dist/js/bootstrap',
     underscore:
       '/components/underscore/underscore',
     layoutmanager:
@@ -37,7 +35,6 @@ requirejs.config({
 requirejs([
   'backbone',
   'layoutmanager',
-  'bootstrap',
   'mediator/main',
   'app/main',
   'home/main',
@@ -46,7 +43,6 @@ requirejs([
 ], function (
   Backbone,
   Layout,
-  Boostrap,
   Mediator,
   App,
   Home,
