@@ -35,17 +35,16 @@ define([
     },
 
     create: function () {
-      this.form(null, '/letters/new');
+      var model = this.collection.create({});
+      this.form(model, '/letters/new');
     },
 
     update: function (id) {
-      this.form(id);
+      var model = this.collection.get(id);
+      this.form(model);
     },
 
-    form: function (id, url) {
-      var model;
-      if (id) model = this.collection.get(id);
-      else    model = this.collection.create({});
+    form: function (model, url) {
       var view = new FormView({model: model});
       this.mediator.trigger('render', {view: view, url: url});
     }

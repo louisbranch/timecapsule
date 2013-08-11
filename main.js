@@ -52,7 +52,7 @@ requirejs([
 
   /*
    * Set all Backbone Views as manageable
-   * by LayoutManagar
+   * by LayoutManager
    */
   Layout.configure({
     manage: true
@@ -77,7 +77,7 @@ requirejs([
   /*
    * Load Services
    */
-  new AutoLinksService();
+  new AutoLinksService({mediator: mediator});
 
   /*
    * Load Modules
@@ -91,6 +91,5 @@ requirejs([
   app.$el.appendTo('body');
   app.render();
 
-  Backbone.history.start({pushState: true});
-
+  mediator.start();
 });
