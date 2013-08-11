@@ -1,17 +1,13 @@
 define(['jquery'], function ($) {
 
-  function toggle() {
-    $('body').toggleClass('lights');
+  function Lights(options) {
+    this.mediator = options.mediator;
+    this.mediator.serve('lights', this);
   }
 
   /* Toggle body lights switch */
-  function Lights(options) {
-    this.mediator = options.mediator;
-
-    this.mediator.serve('lights', {
-      toggle: toggle
-    });
-
+  Lights.prototype.toggle = function () {
+    $('body').toggleClass('lights');
   }
 
   return Lights;

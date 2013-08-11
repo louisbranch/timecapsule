@@ -67,16 +67,6 @@ requirejs([
   var mediator = new Mediator();
 
   /*
-   * Main app structure and layout
-   */
-  var app = new App({mediator: mediator});
-
-  //TODO remove
-  mediator.on('all', function () {
-    console.log(arguments);
-  });
-
-  /*
    * Load Services
    */
   new AutoLinksService({mediator: mediator});
@@ -91,8 +81,15 @@ requirejs([
   /*
    * Render initial app layout
    */
+  var app = new App({mediator: mediator});
   app.$el.appendTo('body');
   app.render();
 
   mediator.start();
+
+  //TODO remove
+  mediator.on('all', function () {
+    console.log(arguments);
+  });
+
 });

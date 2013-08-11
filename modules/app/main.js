@@ -27,6 +27,11 @@ define([
         this.setView(options.root, options.view.render());
       }, this);
 
+      /* Enable autolinks */
+      this.mediator.use('autoLinks', function (service) {
+        service.enable();
+      });
+
     },
 
     events: {
