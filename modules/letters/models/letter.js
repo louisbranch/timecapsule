@@ -12,11 +12,13 @@ define([
 
     /* Default model attributes */
     defaults: {
+      title: '',
       content: ''
     },
 
-    /* Validate blank content */
+    /* Validate blank attributes */
     validate: function (attrs, options) {
+      if (!attrs.title.length) return ('blank title');
       if (!attrs.content.length) return ('blank content');
     },
 

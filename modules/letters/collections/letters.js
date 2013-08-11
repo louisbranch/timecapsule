@@ -16,7 +16,11 @@ define([
 
     localStorage: new Backbone.LocalStorage('letters'),
 
-    url: '/letters'
+    url: '/letters',
+
+    initialize: function () {
+      this.fetch();
+    }
 
   });
 

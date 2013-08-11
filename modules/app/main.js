@@ -29,6 +29,10 @@ define([
 
     },
 
+    events: {
+      'click #lights-switch' : 'lights'
+    },
+
     /*
      * Change navigation active link when a
      * section renders
@@ -43,7 +47,14 @@ define([
         .find('a[href="'+ url  +'"]')
         .closest('li')
         .addClass('active');
+    },
+
+    lights: function () {
+      this.mediator.use('lights', function (service) {
+        service.toggle();
+      });
     }
+
 
   });
 
