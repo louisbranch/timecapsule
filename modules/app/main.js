@@ -44,7 +44,7 @@ define([
      */
     activateUrl: function (url) {
       this.$el
-        .find('.navbar li')
+        .find('.nav li')
         .removeClass('active');
 
       if (!url) return;

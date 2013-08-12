@@ -39,8 +39,7 @@ requirejs([
   'app/main',
   'home/main',
   'letters/main',
-  'services/auto_links_service',
-  'services/lights_service'
+  'services/services'
 ], function (
   Backbone,
   Layout,
@@ -48,8 +47,7 @@ requirejs([
   App,
   Home,
   Letter,
-  AutoLinksService,
-  LightsService
+  services
 ) {
 
   /*
@@ -57,7 +55,8 @@ requirejs([
    * by LayoutManager
    */
   Layout.configure({
-    manage: true
+    manage: true,
+    el: false
   });
 
   /*
@@ -69,8 +68,7 @@ requirejs([
   /*
    * Load Services
    */
-  new AutoLinksService({mediator: mediator});
-  new LightsService({mediator: mediator});
+  services.load(mediator);
 
   /*
    * Load Modules

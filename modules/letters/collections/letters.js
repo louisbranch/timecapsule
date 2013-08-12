@@ -18,7 +18,8 @@ define([
 
     url: '/letters',
 
-    initialize: function () {
+    initialize: function (models, options) {
+      this.mediator = options.mediator;
       this.fetch();
     }
 

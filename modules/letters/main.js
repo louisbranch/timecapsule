@@ -19,7 +19,7 @@ define([
 
     initialize: function (options) {
       this.mediator = options.mediator;
-      this.collection = new Letters();
+      this.collection = new Letters([], {mediator: this.mediator});
     },
 
     routes: {
@@ -35,7 +35,7 @@ define([
     },
 
     create: function () {
-      var model = this.collection.create({});
+      var model = this.collection.create();
       this.form(model, '/letters/new');
     },
 

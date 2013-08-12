@@ -44,10 +44,13 @@ define([
 
     /* Get and return form data */
     data: function () {
-      var content = this.$el.find('textarea').val();
-      return {
-        content: content
-      };
+      var view = this.$el;
+      var data = {};
+      ['title', 'content'].forEach(function (attr) {
+        var value = view.find('#letter-' + attr).val();
+        data[attr] = value;
+      });
+      return data;
     }
 
   });

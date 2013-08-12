@@ -10,6 +10,11 @@ define([
 
   var Model = Backbone.Model.extend({
 
+    initialize: function (attrs, options) {
+      this.mediator = this.collection.mediator;
+      this.setColor();
+    },
+
     /* Default model attributes */
     defaults: {
       title: '',
@@ -29,6 +34,19 @@ define([
     send: function (data) {
       if (!this.isValid()) return;
       Backbone.ajaxSync('create', this);
+    },
+
+    /*
+     * Generates a random color unless
+     * model already has one
+     */
+    setColor: function () {
+      var color = this.get('color');
+      if (color) return;
+      this.mediator.use('color', function (service) {
+        color = service.random();
+      });
+      this.save({color: color});
     }
 
   });
