@@ -20,8 +20,7 @@ define(['jquery'], function ($) {
         service.mediator.navigate(href.attr);
       }
     });
-  }
-
+  };
 
   return AutoLinks;
 

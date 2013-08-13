@@ -8,7 +8,7 @@ define(['jquery'], function ($) {
   /* Toggle body lights switch */
   Lights.prototype.toggle = function () {
     $('body').toggleClass('lights');
-  }
+  };
 
   return Lights;
 

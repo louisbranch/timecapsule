@@ -3,12 +3,23 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     regarde: {
       app: {
-        files: ['main.js', 'modules/**/*.js', 'test/**/*.js'],
-        tasks: ['test']
+        files: ['main.js', 'modules/**/*.js', 'test/**/*.js', 'assets/**/*.less'],
+        tasks: ['test', 'jshint', 'recess']
       }
     },
     jshint: {
-      files: '<%= regarde.app.files %>'
+      files: ['main.js', 'modules/**/*.js', 'test/**/*.js'],
+    },
+    recess: {
+      default: {
+        options: {
+          compile: true,
+          compress: true
+        },
+        files: {
+          'public/main.min.css' : ['assets/less/**/*.less']
+        }
+      }
     }
   });
 
@@ -20,5 +31,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-regarde');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-recess');
 
 };

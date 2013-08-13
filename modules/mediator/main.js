@@ -15,10 +15,6 @@ define([
     Backbone.history.navigate(path, true);
   };
 
-  Mediator.prototype.start = function () {
-    Backbone.history.start({pushState: true});
-  };
-
   Mediator.prototype.serve = function (name, service) {
     if (this.services[name]) new Error('Service already provided!');
     this.services[name] = service;

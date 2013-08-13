@@ -37,7 +37,6 @@ requirejs([
   'layoutmanager',
   'mediator/main',
   'app/main',
-  'home/main',
   'letters/main',
   'services/services'
 ], function (
@@ -45,7 +44,6 @@ requirejs([
   Layout,
   Mediator,
   App,
-  Home,
   Letter,
   services
 ) {
@@ -73,7 +71,6 @@ requirejs([
   /*
    * Load Modules
    */
-  new Home({mediator: mediator});
   new Letter({mediator: mediator});
 
   /*
@@ -83,7 +80,7 @@ requirejs([
   app.$el.appendTo('body');
   app.render();
 
-  mediator.start();
+  Backbone.history.start({pushState: true});
 
   //TODO remove
   mediator.on('all', function () {

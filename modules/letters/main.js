@@ -23,7 +23,7 @@ define([
     },
 
     routes: {
-      'letters'     : 'index',
+      ''     : 'index',
       'letters/new' : 'create',
       'letters/:id' : 'update'
     },

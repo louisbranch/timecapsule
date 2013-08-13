@@ -18,7 +18,10 @@ define([
     /* Default model attributes */
     defaults: {
       title: '',
-      content: ''
+      content: '',
+      day: '',
+      month: '',
+      year: ''
     },
 
     /* Validate blank attributes */
