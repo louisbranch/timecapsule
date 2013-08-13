@@ -1,25 +1,25 @@
-<div class='letter-item large-4 columns'>
+<li class='letter-item'>
   <div class='row' style='background-color: hsl(<%= color %>)'>
-    <div class='letter-date large-2 columns'>
+    <div class='letter-date large-3 columns'>
       <%= day %>
       <%= month %>
       <%= year %>
     </div>
-    <div class='large-10 columns'>
-      <a href="/letters/<%= id %>">
+    <div class='large-9 columns'>
+      <a href='/letters/<%= id %>'>
         <h3><%= title %></h3>
       </a>
       <div class='letter-actions'>
-        <a href="/letters/<%= id %>">
+        <a href='/letters/<%= id %>'>
           <i class='icon-pencil'></i>
         </a>
-        <a href="/letters/<%= id %>">
-          <i class='icon-calendar-empty'></i>
+        <a href='/letters/<%= id %>'>
+          <i class='icon-rocket'></i>
         </a>
-        <a href="/letters/<%= id %>">
+        <a href='/letters/<%= id %>'>
           <i class='icon-trash'></i>
         </a>
       </div>
     </div>
   </div>
-</div>
+</li>

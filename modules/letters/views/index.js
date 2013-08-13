@@ -21,7 +21,7 @@ define([
 
     beforeRender: function () {
       this.collection.each(function (model) {
-        this.insertView(new ItewView({model: model}));
+        this.insertView('ul', new ItewView({model: model}));
       }, this);
     }
 

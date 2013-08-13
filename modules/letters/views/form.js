@@ -19,13 +19,15 @@ define([
 
     events: {
       'click #letter-save' : 'save',
-      'click #letter-send' : 'send'
+      'click #letter-send' : 'send',
+      'submit form'        : 'save'
     },
 
     /* Save model locally with form data */
     save: function () {
       var data = this.data();
       this.model.save(data);
+      return false;
     },
 
     /*

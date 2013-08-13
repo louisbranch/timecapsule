@@ -17,10 +17,26 @@ define([
 
     initialize: function () {
       this.listenTo(this.model, 'change', this.render);
+      this.listenTo(this.model, 'destroy', this.remove);
+    },
+
+    events: {
+      'click .icon-rocket' : 'send',
+      'click .icon-trash'  : 'destroy'
     },
 
     serialize: function () {
       return this.model.toJSON();
+    },
+
+    send: function () {
+      this.model.send();
+      return false;
+    },
+
+    destroy: function () {
+      this.model.destroy();
+      return false;
     }
 
   });
