@@ -18,8 +18,8 @@ define([
     },
 
     events: {
-      'click .btn-default' : 'save',
-      'click .btn-primary' : 'send'
+      'click #letter-save' : 'save',
+      'click #letter-send' : 'send'
     },
 
     /* Save model locally with form data */
@@ -46,7 +46,7 @@ define([
     data: function () {
       var view = this.$el;
       var data = {};
-      ['title', 'content'].forEach(function (attr) {
+      this.model.fields().forEach(function (attr) {
         var value = view.find('#letter-' + attr).val();
         data[attr] = value;
       });

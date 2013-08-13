@@ -20,7 +20,6 @@ define([
 
     initialize: function (models, options) {
       this.mediator = options.mediator;
-      this.fetch();
     }
 
   });

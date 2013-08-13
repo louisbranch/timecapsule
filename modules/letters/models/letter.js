@@ -11,7 +11,7 @@ define([
   var Model = Backbone.Model.extend({
 
     initialize: function (attrs, options) {
-      this.mediator = this.collection.mediator;
+      this.mediator = options.mediator;
       this.setColor();
     },
 
@@ -24,10 +24,17 @@ define([
       year: ''
     },
 
+    fields: function () {
+      return Object.keys(this.defaults);
+    },
+
     /* Validate blank attributes */
     validate: function (attrs, options) {
-      if (!attrs.title.length) return ('blank title');
-      if (!attrs.content.length) return ('blank content');
+      var errors = [];
+      this.fields().forEach(function (key) {
+        if (!attrs[key].length) errors.push('blank ' + key);
+      });
+      if (errors.length) return errors;
     },
 
     /*

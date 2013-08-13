@@ -20,10 +20,11 @@ define([
     initialize: function (options) {
       this.mediator = options.mediator;
       this.collection = new Letters([], {mediator: this.mediator});
+      this.collection.fetch();
     },
 
     routes: {
-      ''     : 'index',
+      ''            : 'index',
       'letters/new' : 'create',
       'letters/:id' : 'update'
     },
@@ -35,7 +36,8 @@ define([
     },
 
     create: function () {
-      var model = this.collection.create();
+      var model = new Letter(null, {mediator: this.mediator});
+      this.collection.add(model);
       this.form(model, '/letters/new');
     },
 

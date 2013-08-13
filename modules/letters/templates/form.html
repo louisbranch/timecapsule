@@ -1,25 +1,25 @@
 <div class='row'>
   <form class='letter-form large-12 small-12 columns'>
     <div>
-      <input id='letter-title' type='text' placeholder='Title...' value='<%= title %>'></input>
+      <input id='letter-title' type='text' placeholder='Title...' value='<%= title %>' tabindex='1' autofocus></input>
     </div>
     <div>
-      <textarea id='letter-content' rows='10' placeholder='Content...'><%= content %></textarea>
+      <textarea id='letter-content' rows='10' placeholder='Content...' tabindex='2'><%= content %></textarea>
     </div>
     <div class='row'>
       <div class='small-4 large-2 columns'>
-        <input id='letter-month' type='text' placeholder='MM' value='<%= month %>'></input>
+        <input id='letter-month' type='text' placeholder='MM' value='<%= month %>' maxlength='2' tabindex='3'></input>
       </div>
       <div class='small-4 large-2 columns'>
-        <input id='letter-day' type='text' placeholder='DD' value='<%= day %>'></input>
+        <input id='letter-day' type='text' placeholder='DD' value='<%= day %>' maxlength='2' tabindex='4'></input>
       </div>
       <div class='small-4 large-2 columns end'>
-        <input id='letter-year' type='text' placeholder='YYYY' value='<%= year %>'></input>
+        <input id='letter-year' type='text' placeholder='YYYY' value='<%= year %>' maxlength='4' tabindex='5'></input>
       </div>
     </div>
     <ul class='button-group'>
-      <li><button type='button' class='secondary'>Save</button></li>
-      <li><button type='button'>Send Letter</button></li>
+      <li><button id='letter-save' type='button' class='secondary' tabindex='6'>Save</button></li>
+      <li><button id='letter-send' type='button' tabindex='7'>Send Letter</button></li>
     </ul>
   </form>
 </div>
