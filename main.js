@@ -25,9 +25,6 @@ requirejs.config({
     layoutmanager: {
       deps: ['backbone'],
       exports: 'Backbone.Layout'
-    },
-    bootstrap: {
-      deps: ['jquery']
     }
   }
 });

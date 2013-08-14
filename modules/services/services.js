@@ -1,15 +1,15 @@
 define([
  'services/color_service',
- 'services/lights_service',
- 'services/auto_links_service'
+ 'services/dates_service',
+ 'services/auto_links_service',
 ], function (
   Color,
-  Lights,
+  Dates,
   AutoLinks
 ) {
 
   function load(mediator) {
-    [Color, Lights, AutoLinks].forEach(function (service) {
+    [Color, Dates, AutoLinks].forEach(function (service) {
       new service({mediator: mediator});
     });
   }

@@ -20,17 +20,26 @@ module.exports = function(grunt) {
           'public/main.min.css' : ['assets/less/**/*.less']
         }
       }
+    },
+    shell: {
+      'mocha-phantomjs': {
+        command: 'mocha-phantomjs -R dot http://localhost:8080/test/index.html',
+        options: {
+          stdout: true,
+          stderr: true
+        }
+      }
     }
   });
 
   // Tasks
-  grunt.registerTask('default', 'regarde');
-  grunt.registerTask('test', ['jshint']);
+  grunt.registerTask('default', ['regarde']);
+  grunt.registerTask('test', ['shell:mocha-phantomjs']);
 
   // Load Dependencies
   grunt.loadNpmTasks('grunt-regarde');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-recess');
+  grunt.loadNpmTasks('grunt-shell');
 
 };
