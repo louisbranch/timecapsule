@@ -26,7 +26,7 @@ define([
     },
 
     serialize: function () {
-      return this.model.toJSON();
+      return this.model.present();
     },
 
     send: function () {

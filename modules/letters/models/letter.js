@@ -11,7 +11,7 @@ define([
   var Model = Backbone.Model.extend({
 
     initialize: function (attrs, options) {
-      this.mediator = options.mediator;
+      this.mediator = options.mediator || options.collection.mediator;
       this.setColor();
     },
 
@@ -19,9 +19,7 @@ define([
     defaults: {
       title: '',
       content: '',
-      day: '',
-      month: '',
-      year: ''
+      date: ''
     },
 
     fields: function () {
@@ -32,7 +30,7 @@ define([
     validate: function (attrs, options) {
       var errors = [];
       this.fields().forEach(function (key) {
-        if (!attrs[key].length) errors.push('blank ' + key);
+        if (!attrs[key]) errors.push('blank ' + key);
       });
       if (errors.length) return errors;
     },
@@ -57,6 +55,30 @@ define([
         color = service.hsv();
       });
       this.save({color: color});
+    },
+
+    /* Parse date from form and save */
+    setDate: function (data) {
+      if (!data.date) return;
+      var years = parseInt(data.date, 10);
+      var now = new Date();
+      var day = now.getUTCDate();
+      var month = now.getUTCMonth();
+      var year = now.getUTCFullYear() + years;
+      data.date = new Date(year, month, day);
+      this.set(data);
+    },
+
+    /*
+     * Add formated values to toJSON
+     * representation
+     */
+    present: function () {
+      var json = this.toJSON();
+      this.mediator.require('dates', function (service) {
+        json.date = service.format(new Date(json.date));
+      });
+      return json;
     }
 
   });
