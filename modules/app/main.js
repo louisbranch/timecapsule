@@ -29,7 +29,7 @@ define([
 
       /* Enable autolinks */
       this.mediator.use('autoLinks', function (service) {
-        service.enable();
+        service.enable(options.mediator);
       });
 
     },

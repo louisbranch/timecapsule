@@ -6,7 +6,6 @@ define(['jquery'], function ($) {
    * Skip this by adding data-bypass attribute to the link
    */
   function enable (mediator) {
-    var service = this;
     $(document).on('click', 'a:not([data-bypass])', function(evt) {
       var href = { prop: $(this).prop('href'), attr: $(this).attr('href') };
       var root = location.protocol + '//' + location.host + '/';

@@ -54,7 +54,7 @@ define([
       var color = this.get('color');
       if (color) return;
       this.mediator.use('color', function (service) {
-        color = service.random();
+        color = service.hsv();
       });
       this.save({color: color});
     }
