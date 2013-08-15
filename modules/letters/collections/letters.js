@@ -20,6 +20,10 @@ define([
 
     initialize: function (models, options) {
       this.mediator = options.mediator;
+    },
+
+    comparator: function (model) {
+      return model.get('date');
     }
 
   });

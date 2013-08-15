@@ -12,13 +12,13 @@ define([
 
     initialize: function (attrs, options) {
       this.mediator = options.mediator || options.collection.mediator;
-      this.setColor();
     },
 
     /* Default model attributes */
     defaults: {
       title: '',
       content: '',
+      years: 1,
       date: ''
     },
 
@@ -33,6 +33,22 @@ define([
         if (!attrs[key]) errors.push('blank ' + key);
       });
       if (errors.length) return errors;
+    },
+
+    /*
+     * Overwrite save function
+     * and create a before save hook
+     */
+    save: function (attributes, options) {
+      this.set(attributes);
+      this.beforeSave();
+      Backbone.Model.prototype.save.call(this, null, options);
+    },
+
+    /* Hook triggered before save action */
+    beforeSave: function () {
+      this.setColor();
+      this.setDate();
     },
 
     /*
@@ -54,19 +70,22 @@ define([
       this.mediator.require('color', function (service) {
         color = service.hsv();
       });
-      this.save({color: color});
+      this.set({color: color});
     },
 
-    /* Parse date from form and save */
-    setDate: function (data) {
-      if (!data.date) return;
-      var years = parseInt(data.date, 10);
+    /*
+     * Parse number of years in the future
+     * and create a date from now adding
+     * those years to it
+     */
+    setDate: function () {
+      var years = parseInt(this.get('years'), 10);
       var now = new Date();
       var day = now.getUTCDate();
       var month = now.getUTCMonth();
       var year = now.getUTCFullYear() + years;
-      data.date = new Date(year, month, day);
-      this.set(data);
+      var date = new Date(year, month, day);
+      this.set({date: date});
     },
 
     /*

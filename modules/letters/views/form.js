@@ -26,7 +26,7 @@ define([
     /* Save model locally with form data */
     save: function () {
       var data = this.data();
-      this.model.setDate(data);
+      this.model.save(data);
       return false;
     },
 
