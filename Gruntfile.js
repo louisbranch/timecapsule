@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     regarde: {
       app: {
         files: ['main.js', 'modules/**/*.js', 'test/**/*.js', 'assets/**/*.less'],
-        tasks: ['test', 'jshint', 'recess']
+        tasks: ['shell:mocha-phantomjs', 'jshint', 'recess']
       }
     },
     jshint: {
@@ -23,22 +23,31 @@ module.exports = function(grunt) {
     },
     shell: {
       'mocha-phantomjs': {
-        command: 'mocha-phantomjs -R dot http://localhost:8080/test/index.html',
+        command: 'mocha-phantomjs -R dot http://localhost:9001/test/index.html',
         options: {
           stdout: true,
           stderr: true
         }
       }
-    }
+    },
+    connect: {
+      server: {
+        options: {
+          port: 9001,
+          base: '.'
+        }
+      }
+    },
   });
 
   // Tasks
-  grunt.registerTask('default', ['regarde']);
-  grunt.registerTask('test', ['shell:mocha-phantomjs']);
+  grunt.registerTask('default', ['connect', 'regarde']);
+  grunt.registerTask('test', ['connect', 'shell:mocha-phantomjs', 'jshint']);
 
   // Load Dependencies
   grunt.loadNpmTasks('grunt-regarde');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-recess');
   grunt.loadNpmTasks('grunt-shell');
 

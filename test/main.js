@@ -50,7 +50,13 @@ require(['mocha', 'chai'], function (mocha, chai) {
 
   window.assert = chai.assert;
 
-  require(['test/modules/app/main'], function () {
+  require([
+    'test/modules/app/main',
+    'test/modules/services/services',
+    'test/modules/services/dates_service',
+    'test/modules/services/color_service',
+    'test/modules/services/auto_links_service'
+  ], function () {
 
     if (window.mochaPhantomJS) mochaPhantomJS.run();
     else mocha.run();

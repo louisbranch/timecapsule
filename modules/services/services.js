@@ -1,16 +1,24 @@
 define([
+ 'underscore',
  'services/color_service',
  'services/dates_service',
  'services/auto_links_service',
 ], function (
-  Color,
-  Dates,
-  AutoLinks
+  _,
+  color,
+  dates,
+  autoLinks
 ) {
 
+  var services = {
+    color: color,
+    dates: dates,
+    autoLinks: autoLinks
+  };
+
   function load(mediator) {
-    [Color, Dates, AutoLinks].forEach(function (service) {
-      new service({mediator: mediator});
+    _.each(services, function (service, name) {
+      mediator.serve(name, service);
     });
   }
 
