@@ -53,7 +53,7 @@ define([
     setColor: function () {
       var color = this.get('color');
       if (color) return;
-      this.mediator.use('color', function (service) {
+      this.mediator.require('color', function (service) {
         color = service.hsv();
       });
       this.save({color: color});

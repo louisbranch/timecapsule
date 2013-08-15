@@ -18,7 +18,7 @@ define([
 
   function load(mediator) {
     _.each(services, function (service, name) {
-      mediator.serve(name, service);
+      mediator.define(name, service);
     });
   }
 

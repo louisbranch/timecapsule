@@ -2,13 +2,13 @@ define(['services/services'], function (services) {
 
   describe('Services loader', function(){
 
-    it('serves every service to mediator', function(){
-      var served = {};
-      var stub = {serve: function (name, service) {
-        served[name] = service;
+    it('defines every service to mediator', function(){
+      var defined = {};
+      var stub = {define: function (name, service) {
+        defined[name] = service;
       }};
       services.load(stub);
-      assert.deepEqual(Object.keys(served),
+      assert.deepEqual(Object.keys(defined),
                        ['color', 'dates', 'autoLinks']);
     });
 

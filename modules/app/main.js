@@ -28,7 +28,7 @@ define([
       }, this);
 
       /* Enable autolinks */
-      this.mediator.use('autoLinks', function (service) {
+      this.mediator.require('autoLinks', function (service) {
         service.enable(options.mediator);
       });
 
@@ -52,14 +52,7 @@ define([
         .find('a[href="'+ url  +'"]')
         .closest('li')
         .addClass('active');
-    },
-
-    lights: function () {
-      this.mediator.use('lights', function (service) {
-        service.toggle();
-      });
     }
-
 
   });
 
