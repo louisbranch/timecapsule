@@ -1,6 +1,6 @@
 define(['services/dates_service'], function (dates) {
 
-  var date = new Date(Date.UTC(2014, 06, 25, 0, 0, 0));
+  var date = new Date(2014, 06, 25, 0, 0, 0);
 
   describe('Dates service', function(){
 

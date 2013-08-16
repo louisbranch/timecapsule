@@ -2,9 +2,10 @@
  * Letter Model
  */
 define([
-  'backbone',
-  'localStorage'
+  'underscore',
+  'backbone'
 ], function (
+  _,
   Backbone
 ) {
 
@@ -68,7 +69,7 @@ define([
       var color = this.get('color');
       if (color) return;
       this.mediator.require('color', function (service) {
-        color = service.hsv();
+        color = service.random();
       });
       this.set({color: color});
     },
@@ -81,9 +82,9 @@ define([
     setDate: function () {
       var years = parseInt(this.get('years'), 10);
       var now = new Date();
-      var day = now.getUTCDate();
-      var month = now.getUTCMonth();
-      var year = now.getUTCFullYear() + years;
+      var day = now.getDate();
+      var month = now.getMonth();
+      var year = now.getFullYear() + years;
       var date = new Date(year, month, day);
       this.set({date: date});
     },
@@ -97,6 +98,7 @@ define([
       this.mediator.require('dates', function (service) {
         json.date = service.format(new Date(json.date));
       });
+      json.color = _.values(json.color).join(',');
       return json;
     }
 

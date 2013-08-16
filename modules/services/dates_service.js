@@ -11,11 +11,11 @@ define(function () {
    * year from a date
    */
   function format (date) {
-    var n = date.getUTCMonth() - 1;
+    var n = date.getMonth() - 1;
     return {
-      day: date.getUTCDate(),
+      day: date.getDate(),
       month: months[n],
-      year: date.getUTCFullYear()
+      year: date.getFullYear()
     };
   }
 
