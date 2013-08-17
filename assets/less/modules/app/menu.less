@@ -1,0 +1,31 @@
+/* Mobile menu layout */
+nav .menu {
+  display: none;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  width: 80%;
+  height: 100%;
+  background-color: #333;
+  box-shadow: inset -2px 0px 8px -1px #111111;
+}
+
+/* Links */
+nav .menu li a {
+  display: block;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  white-space: nowrap;
+  border-bottom: 1px solid rgba(0,0,0,.5);
+}
+
+nav .menu li a:hover,
+nav .menu li a:active {
+  background-color: #222;
+}
+
+/* Links Icons */
+nav .menu li a i {
+  padding: 0 .5em;
+}
