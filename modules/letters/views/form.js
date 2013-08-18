@@ -13,12 +13,7 @@ define([
 
     template: _.template(template),
 
-    initialize: function () {
-      this.listenTo(this.model, 'change', this.render);
-    },
-
     events: {
-      'click #letter-save' : 'save',
       'click #letter-send' : 'send',
       'submit form'        : 'save'
     },
@@ -44,7 +39,10 @@ define([
       return this.model.toJSON();
     },
 
-    /* Get and return form data */
+    /*
+     * For each model field, find its input
+     * value
+     */
     data: function () {
       var view = this.$el;
       var data = {};
