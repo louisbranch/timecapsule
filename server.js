@@ -5,6 +5,14 @@ var express = require("express"),
 
 app.use(express.static(path.join(__dirname + "/public")));
 
+app.use(function (req, res, next) {
+  if (req.headers.accept.match(/text\/html/)) {
+    res.sendfile("public/index.html");
+  } else {
+    next();
+  }
+});
+
 app.post("/letters/:id", function (req, res) {
   var payload = "";
 
