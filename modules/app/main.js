@@ -62,14 +62,14 @@ define([
     slideContent: function () {
       var left, right;
       var main = this.$el.find("#main");
-      if (margin = main.hasClass("mobile-menu")) {
+      if (main.hasClass("mobile-menu")) {
         left = right = "0px";
       } else {
         left = "85%";
         right = "-85%";
       }
       main.animate({marginRight: right, marginLeft: left}, 50);
-      main.toggleClass("mobile-menu")
+      main.toggleClass("mobile-menu");
     },
 
     beforeRender: function () {

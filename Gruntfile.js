@@ -1,14 +1,18 @@
 module.exports = function(grunt) {
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: grunt.file.readJSON("package.json"),
     regarde: {
-      app: {
-        files: ['main.js', 'modules/**/*.js', 'test/**/*.js', 'assets/**/*.less'],
-        tasks: ['shell:mocha-phantomjs', 'jshint', 'recess']
+      js: {
+        files: ["main.js", "modules/**/*.js", "test/**/*.js"],
+        tasks: ["shell:mocha-phantomjs", "jshint", "shell:rjs"]
+      },
+      css: {
+        files: ["assets/**/*.less"],
+        tasks: ["recess"]
       }
     },
     jshint: {
-      files: ['main.js', 'modules/**/*.js', 'test/**/*.js'],
+      files: ["main.js", "modules/**/*.js", "test/**/*.js"],
     },
     recess: {
       default: {
@@ -17,38 +21,41 @@ module.exports = function(grunt) {
           compress: true
         },
         files: {
-          'public/main.min.css' : ['assets/less/**/*.less']
+          "public/main.min.css" : ["assets/less/**/*.less"]
         }
       }
     },
     shell: {
-      'mocha-phantomjs': {
-        command: 'mocha-phantomjs -R dot http://localhost:9001/test/index.html',
+      "mocha-phantomjs": {
+        command: "mocha-phantomjs -R dot http://localhost:9001/test/index.html",
         options: {
           stdout: true,
           stderr: true
         }
+      },
+      rjs: {
+        command: "r.js -o build.json"
       }
     },
     connect: {
       server: {
         options: {
           port: 9001,
-          base: '.'
+          base: "."
         }
       }
-    },
+    }
   });
 
   // Tasks
-  grunt.registerTask('default', ['connect', 'regarde']);
-  grunt.registerTask('test', ['connect', 'shell:mocha-phantomjs', 'jshint']);
+  grunt.registerTask("default", ["connect", "regarde"]);
+  grunt.registerTask("test", ["connect", "shell:mocha-phantomjs", "jshint"]);
 
   // Load Dependencies
-  grunt.loadNpmTasks('grunt-regarde');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-  grunt.loadNpmTasks('grunt-recess');
-  grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks("grunt-contrib-connect");
+  grunt.loadNpmTasks("grunt-contrib-jshint");
+  grunt.loadNpmTasks("grunt-recess");
+  grunt.loadNpmTasks("grunt-regarde");
+  grunt.loadNpmTasks("grunt-shell");
 
 };

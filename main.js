@@ -1,34 +1,3 @@
-requirejs.config({
-  baseUrl: '/modules',
-  paths: {
-    jquery:
-      '/components/jquery/jquery',
-    backbone:
-      '/components/backbone/backbone',
-    underscore:
-      '/components/underscore/underscore',
-    layoutmanager:
-      '/components/layoutmanager/backbone.layoutmanager',
-    localStorage:
-      '/components/backbone.localStorage/backbone.localStorage',
-    text:
-      '/components/requirejs-text/text'
-  },
-  shim: {
-    underscore: {
-      exports: '_'
-    },
-    backbone: {
-      deps: ['underscore', 'jquery'],
-      exports: 'Backbone'
-    },
-    layoutmanager: {
-      deps: ['backbone'],
-      exports: 'Backbone.Layout'
-    }
-  }
-});
-
 requirejs([
   'backbone',
   'layoutmanager',
