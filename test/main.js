@@ -1,61 +1,61 @@
 requirejs.config({
-  baseUrl: '/modules',
+  baseUrl: "/modules",
   paths: {
     jquery:
-      '/components/jquery/jquery',
+      "/components/jquery/jquery",
     backbone:
-      '/components/backbone/backbone',
+      "/components/backbone/backbone",
     underscore:
-      '/components/underscore/underscore',
+      "/components/underscore/underscore",
     layoutmanager:
-      '/components/layoutmanager/backbone.layoutmanager',
+      "/components/layoutmanager/backbone.layoutmanager",
     localStorage:
-      '/components/backbone.localStorage/backbone.localStorage',
+      "/components/backbone.localStorage/backbone.localStorage",
     text:
-      '/components/requirejs-text/text',
+      "/components/requirejs-text/text",
     test:
-      '/test',
+      "/test",
     mocha:
-      '/components/mocha/mocha',
+      "/components/mocha/mocha",
     chai:
-      '/components/chai/chai'
+      "/components/chai/chai"
   },
   shim: {
     underscore: {
-      exports: '_'
+      exports: "_"
     },
     backbone: {
-      deps: ['underscore', 'jquery'],
-      exports: 'Backbone'
+      deps: ["underscore", "jquery"],
+      exports: "Backbone"
     },
     layoutmanager: {
-      deps: ['backbone'],
-      exports: 'Backbone.Layout'
+      deps: ["backbone"],
+      exports: "Backbone.Layout"
     },
     mocha: {
-      exports: 'mocha'
+      exports: "mocha"
     },
     chai: {
-      exports: 'chai'
+      exports: "chai"
     }
   }
 });
 
-require(['mocha', 'chai'], function (mocha, chai) {
+require(["mocha", "chai"], function (mocha, chai) {
 
   mocha.setup({
-    ui: 'tdd',
+    ui: "tdd",
     timeout: 1000
   });
 
   window.assert = chai.assert;
 
   require([
-    'test/modules/app/main',
-    'test/modules/services/services',
-    'test/modules/services/dates_service',
-    'test/modules/services/color_service',
-    'test/modules/services/auto_links_service'
+    "test/modules/app/main",
+    "test/modules/services/services",
+    "test/modules/services/dates_service",
+    "test/modules/services/color_service",
+    "test/modules/services/auto_links_service"
   ], function () {
 
     if (window.mochaPhantomJS) mochaPhantomJS.run();

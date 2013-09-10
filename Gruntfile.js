@@ -3,16 +3,16 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON("package.json"),
     regarde: {
       js: {
-        files: ["main.js", "modules/**/*.js", "test/**/*.js"],
+        files: ["assets/js/main.js", "assets/js/modules/**/*.js", "test/**/*.js"],
         tasks: ["shell:mocha-phantomjs", "jshint", "shell:rjs"]
       },
       css: {
-        files: ["assets/**/*.less"],
+        files: ["assets/less/**/*.less"],
         tasks: ["recess"]
       }
     },
     jshint: {
-      files: ["main.js", "modules/**/*.js", "test/**/*.js"],
+      files: ["assets/js/main.js", "assets/js/modules/**/*.js", "test/**/*.js"],
     },
     recess: {
       default: {

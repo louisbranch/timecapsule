@@ -1,0 +1,11 @@
+header.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    a.brand(href="/") Ident.ico
+    ul.nav
+      each item in mainMenu
+        li(class=item.active ? "active" : "")
+          a(href=item.url)= item.name
+    ul.nav.pull-right
+      each item in userMenu
+        li(class=item.active ? "active" : "")
+          a(href=item.url)= item.name

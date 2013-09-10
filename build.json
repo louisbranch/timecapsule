@@ -1,5 +1,5 @@
 {
-  "baseUrl": "modules",
+  "baseUrl": "assets/js/modules",
   "paths": {
     "requireLib":
       "../components/requirejs/require",

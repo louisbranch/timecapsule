@@ -1,7 +1,7 @@
 {
   "name": "timecapsule",
   "version": "0.0.0",
-  "main": "components",
+  "main": "assets/js/components",
   "ignore": [
     "**/.*",
     "node_modules",
