@@ -1,24 +1,24 @@
 requirejs.config({
-  baseUrl: "/modules",
+  baseUrl: "/assets/js/modules",
   paths: {
     jquery:
-      "/components/jquery/jquery",
+      "/assets/js/components/jquery/jquery",
     backbone:
-      "/components/backbone/backbone",
+      "/assets/js/components/backbone/backbone",
     underscore:
-      "/components/underscore/underscore",
+      "/assets/js/components/underscore/underscore",
     layoutmanager:
-      "/components/layoutmanager/backbone.layoutmanager",
+      "/assets/js/components/layoutmanager/backbone.layoutmanager",
     localStorage:
-      "/components/backbone.localStorage/backbone.localStorage",
+      "/assets/js/components/backbone.localStorage/backbone.localStorage",
     text:
-      "/components/requirejs-text/text",
+      "/assets/js/components/requirejs-text/text",
     test:
       "/test",
     mocha:
-      "/components/mocha/mocha",
+      "/assets/js/components/mocha/mocha",
     chai:
-      "/components/chai/chai"
+      "/assets/js/components/chai/chai"
   },
   shim: {
     underscore: {
