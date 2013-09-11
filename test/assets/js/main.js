@@ -14,7 +14,7 @@ requirejs.config({
     text:
       "/assets/js/components/requirejs-text/text",
     test:
-      "/test",
+      "/test/assets/js",
     mocha:
       "/assets/js/components/mocha/mocha",
     chai:
