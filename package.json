@@ -4,7 +4,7 @@
   "description": "Write to your future self",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --recursive test/"
+    "test": "grunt test"
   },
   "author": {
     "name": "Luiz Branco",
