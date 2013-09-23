@@ -1,20 +1,22 @@
 extend ../views/layout
 
 block content
-  h1 Sign Up
-  if errors
-    each msg in errors
-      p= msg
-  form(action="/signup" method="post")
-    div
-      label Email:
-      input(type="text" name="email")
-    div
-      label Password:
-      input(type="password" name="password")
-    div
-      label Password Confirmation:
-      input(type="password" name="confirmation")
-    div
-      input.btn.btn-primary.btn-large(type="submit" value="Sign Up")
+  .row
+    .small-6.large-centered.columns
+      h1 Sign Up
+      if errors
+        each msg in errors
+          p= msg
+      form(action="/signup" method="post")
+        div
+          label Email:
+          input(type="text" name="email")
+        div
+          label Password:
+          input(type="password" name="password")
+        div
+          label Password Confirmation:
+          input(type="password" name="confirmation")
+        div
+          input.button(type="submit" value="Sign Up")
 

@@ -20,10 +20,14 @@ app.use(passport.session());
 var auth = require("./lib/auth");
 var home = require("./lib/home");
 var dashboard = require("./lib/dashboard");
+var login = require("./lib/login");
+var signup = require("./lib/signup");
 
 var auth = require("./lib/auth");
 app.use(home);
 app.use(dashboard);
+app.use(login);
+app.use(signup);
 
 app.listen(port);
 console.log("Listening on port " + port);
