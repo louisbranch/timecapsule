@@ -21,12 +21,14 @@ var auth = require("./lib/auth");
 var home = require("./lib/home");
 var dashboard = require("./lib/dashboard");
 var login = require("./lib/login");
+var logout = require("./lib/logout");
 var signup = require("./lib/signup");
 
 auth.config(passport);
 app.use(home);
 app.use(dashboard);
 app.use(login);
+app.use(logout);
 app.use(signup);
 
 app.listen(port);
