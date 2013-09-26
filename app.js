@@ -23,7 +23,7 @@ var dashboard = require("./lib/dashboard");
 var login = require("./lib/login");
 var signup = require("./lib/signup");
 
-var auth = require("./lib/auth");
+auth.config(passport);
 app.use(home);
 app.use(dashboard);
 app.use(login);
