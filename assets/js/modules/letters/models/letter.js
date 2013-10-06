@@ -2,8 +2,8 @@
  * Letter Model
  */
 define([
-  'underscore',
-  'backbone'
+  "underscore",
+  "backbone"
 ], function (
   _,
   Backbone
@@ -17,10 +17,10 @@ define([
 
     /* Default model attributes */
     defaults: {
-      title: '',
-      content: '',
+      title: "",
+      content: "",
       years: 1,
-      date: ''
+      date: ""
     },
 
     fields: function () {
@@ -31,7 +31,7 @@ define([
     validate: function (attrs, options) {
       var errors = [];
       this.fields().forEach(function (key) {
-        if (!attrs[key]) errors.push('blank ' + key);
+        if (!attrs[key]) errors.push("blank " + key);
       });
       if (errors.length) return errors;
     },
@@ -58,7 +58,7 @@ define([
      */
     send: function (data) {
       if (!this.isValid()) return;
-      Backbone.ajaxSync('create', this);
+      Backbone.ajaxSync("update", this);
     },
 
     /*
@@ -66,9 +66,9 @@ define([
      * model already has one
      */
     setColor: function () {
-      var color = this.get('color');
+      var color = this.get("color");
       if (color) return;
-      this.mediator.require('color', function (service) {
+      this.mediator.require("color", function (service) {
         color = service.random();
       });
       this.set({color: color});
@@ -80,7 +80,7 @@ define([
      * those years to it
      */
     setDate: function () {
-      var years = parseInt(this.get('years'), 10);
+      var years = parseInt(this.get("years"), 10);
       var now = new Date();
       var day = now.getDate();
       var month = now.getMonth();
@@ -95,10 +95,10 @@ define([
      */
     present: function () {
       var json = this.toJSON();
-      this.mediator.require('dates', function (service) {
+      this.mediator.require("dates", function (service) {
         json.date = service.format(new Date(json.date));
       });
-      json.color = _.values(json.color).join(',');
+      json.color = _.values(json.color).join(",");
       return json;
     }
 

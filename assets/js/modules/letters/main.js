@@ -25,6 +25,7 @@ define([
 
     routes: {
       ''            : 'index',
+      'letters'     : 'index',
       'letters/new' : 'create',
       'letters/:id' : 'update'
     },

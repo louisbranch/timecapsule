@@ -23,6 +23,7 @@ var dashboard = require("./lib/dashboard");
 var login = require("./lib/login");
 var logout = require("./lib/logout");
 var signup = require("./lib/signup");
+var letters = require("./lib/letters");
 
 auth.config(passport);
 app.use(home);
@@ -30,6 +31,7 @@ app.use(dashboard);
 app.use(login);
 app.use(logout);
 app.use(signup);
+app.use(letters);
 
 app.listen(port);
 console.log("Listening on port " + port);
