@@ -26,6 +26,13 @@ module.exports = function(grunt) {
       }
     },
     shell: {
+      mocha: {
+        command: "mocha --recursive --colors test/lib",
+        options: {
+          stdout: true,
+          stderr: true
+        }
+      },
       "mocha-phantomjs": {
         command: "mocha-phantomjs -R dot http://localhost:9001/test/assets/js/index.html",
         options: {
@@ -36,6 +43,7 @@ module.exports = function(grunt) {
       rjs: {
         command: "r.js -o build.json"
       }
+
     },
     connect: {
       server: {
@@ -49,7 +57,7 @@ module.exports = function(grunt) {
 
   // Tasks
   grunt.registerTask("default", ["connect", "regarde"]);
-  grunt.registerTask("test", ["connect", "shell:mocha-phantomjs", "jshint"]);
+  grunt.registerTask("test", ["shell:mocha", "connect", "shell:mocha-phantomjs", "jshint"]);
 
   // Load Dependencies
   grunt.loadNpmTasks("grunt-contrib-connect");
