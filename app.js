@@ -18,19 +18,15 @@ app.use(passport.session());
  * App Modules
  */
 var auth = require("./lib/auth");
+var config = require("./lib/auth/config");
 var home = require("./lib/home");
 var dashboard = require("./lib/dashboard");
-var login = require("./lib/login");
-var logout = require("./lib/logout");
-var signup = require("./lib/signup");
 var letters = require("./lib/letters");
 
-auth.config(passport);
+config(passport);
 app.use(home);
+app.use(auth);
 app.use(dashboard);
-app.use(login);
-app.use(logout);
-app.use(signup);
 app.use(letters);
 
 app.listen(port);
