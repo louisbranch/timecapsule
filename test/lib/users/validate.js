@@ -28,37 +28,4 @@ describe("users validation", function(){
 
   });
 
-  describe("password", function(){
-
-    it("has to be equal to the confirmation", function(){
-      var password = "picard";
-      var confirmation = "kirk";
-      var validation = validate.password(password, confirmation);
-      assert.deepEqual(validation.errors(), ["Password and confirmation don't match"]);
-    });
-
-    it("has a min length of 6", function(){
-      var password = "kirk";
-      var confirmation = password;
-      var validation = validate.password(password, confirmation);
-      assert.deepEqual(validation.errors(), ["Password must have between 6 and 64 characters"]);
-    });
-
-    it("has a max length of 64", function(){
-      var password = new Array(66).join("a");
-      var confirmation = password;
-      var validation = validate.password(password, confirmation);
-      assert.deepEqual(validation.errors(), ["Password must have between 6 and 64 characters"]);
-    });
-
-    it("has no errors when is valid", function(){
-      var password = "secret";
-      var confirmation = password;
-      var validation = validate.password(password, confirmation);
-      assert.deepEqual(validation.errors(), []);
-    });
-
-  });
-
 });
-

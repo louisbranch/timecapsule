@@ -9,7 +9,7 @@ describe("/home", function(){
     it("responds successfully", function(done){
       request(app)
         .get("/")
-        .expect(/Log In/)
+        .expect(/Enter/)
         .expect(200, done);
     });
 
