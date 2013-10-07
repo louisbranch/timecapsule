@@ -1,8 +1,8 @@
 define([
- 'underscore',
- 'services/color_service',
- 'services/dates_service',
- 'services/auto_links_service',
+ "underscore",
+ "modules/services/color_service",
+ "modules/services/dates_service",
+ "modules/services/auto_links_service",
 ], function (
   _,
   color,

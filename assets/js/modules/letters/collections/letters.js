@@ -2,33 +2,31 @@
  * Letter Collection
  */
 define([
-  'backbone',
-  'letters/models/letter',
-  'localStorage'
+  "app",
+  "modules/letters/models/letter",
+  "localStorage"
 ], function (
-  Backbone,
-  Letter
+  App,
+  Letter,
+  Backbone
 ) {
 
-  var Collection = Backbone.Collection.extend({
+  return App.Collection.extend({
 
     model: Letter,
 
-    localStorage: new Backbone.LocalStorage('letters'),
+    localStorage: new Backbone.LocalStorage("letters"),
 
-    url: '/letters',
+    url: "/letters",
 
     initialize: function (models, options) {
       this.mediator = options.mediator;
     },
 
     comparator: function (model) {
-      return model.get('date');
+      return model.get("date");
     }
 
   });
 
-  return Collection;
-
 });
-

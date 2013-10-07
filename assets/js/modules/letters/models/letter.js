@@ -3,17 +3,13 @@
  */
 define([
   "underscore",
-  "backbone"
+  "app"
 ], function (
   _,
-  Backbone
+  App
 ) {
 
-  var Model = Backbone.Model.extend({
-
-    initialize: function (attrs, options) {
-      this.mediator = options.mediator || options.collection.mediator;
-    },
+  return App.Model.extend({
 
     /* Default model attributes */
     defaults: {
@@ -103,7 +99,5 @@ define([
     }
 
   });
-
-  return Model;
 
 });

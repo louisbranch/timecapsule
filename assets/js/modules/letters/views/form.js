@@ -2,20 +2,20 @@
  * Letters form view
  */
 define([
-  'backbone',
-  'text!letters/templates/form.html'
+  "app",
+  "text!modules/letters/templates/form.html"
 ], function (
-  Backbone,
+  App,
   template
 ) {
 
-  var View = Backbone.View.extend({
+  return App.View.extend({
 
-    template: _.template(template),
+    template: template,
 
     events: {
-      'click #letter-send' : 'send',
-      'submit form'        : 'save'
+      "click #letter-send" : "send",
+      "submit form"        : "save"
     },
 
     /* Save model locally with form data */
@@ -47,14 +47,12 @@ define([
       var view = this.$el;
       var data = {};
       this.model.fields().forEach(function (attr) {
-        var value = view.find('#letter-' + attr).val();
+        var value = view.find("#letter-" + attr).val();
         data[attr] = value;
       });
       return data;
     }
 
   });
-
-  return View;
 
 });

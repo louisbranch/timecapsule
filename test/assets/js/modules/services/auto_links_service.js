@@ -1,24 +1,24 @@
-define(['jquery', 'services/auto_links_service'], function ($, links) {
+define(["jquery", "modules/services/auto_links_service"], function ($, links) {
 
-  describe('Auto Links service', function(){
+  describe("Auto Links service", function(){
 
     beforeEach(function(){
-      $('body').append('<a href="/test" id="test-link">Link</a>');
-      $('body').append('<a href="/test" id="bypass-link" data-bypass>Link</a>');
+      $("body").append("<a href='/test' id='test-link'>Link</a>");
+      $("body").append("<a href='/test' id='bypass-link' data-bypass>Link</a>");
     });
 
-    it('hijacks the click and triggers the navigate', function(done){
+    it("hijacks the click and triggers the navigate", function(done){
       var stub = {navigate: function (path) {
-        assert.equal(path, '/test');
+        assert.equal(path, "/test");
         done();
       }};
       links.enable(stub);
-      $('#test-link').click();
+      $("#test-link").click();
     });
 
-    it('bypass links with data-bypass', function(){
+    it("bypass links with data-bypass", function(){
       links.enable();
-      $('#bypass-link').click();
+      $("#bypass-link").click();
       assert(true);
     });
 

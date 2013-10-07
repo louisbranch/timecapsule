@@ -2,14 +2,14 @@
  * Home module router
  */
 define([
-  "backbone",
-  "home/lib/auth"
+  "app",
+  "modules/home/lib/auth"
 ], function (
-  Backbone,
+  App,
   auth
 ) {
 
-  return Backbone.Router.extend({
+  return App.Router.extend({
 
     initialize: function (options) {
       this.mediator = options.mediator;

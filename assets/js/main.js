@@ -1,29 +1,18 @@
 requirejs([
   "backbone",
-  "layoutmanager",
-  "mediator/main",
-  "app/main",
-  "home/index",
-  "letters/main",
-  "services/services"
+  "modules/mediator/index",
+  "modules/layout/index",
+  "modules/home/index",
+  "modules/letters/index",
+  "modules/services/index"
 ], function (
   Backbone,
-  Layout,
   Mediator,
-  App,
+  Layout,
   Home,
-  Letter,
+  Letters,
   services
 ) {
-
-  /*
-   * Set all Backbone Views as manageable
-   * by LayoutManager
-   */
-  Layout.configure({
-    manage: true,
-    el: false
-  });
 
   /*
    * Events mediator to communicate
@@ -40,15 +29,15 @@ requirejs([
    * Load Modules
    */
   new Home({mediator: mediator});
-  new Letter({mediator: mediator});
+  new Letters({mediator: mediator});
 
   /*
    * Render initial app layout
    */
   if (window.BOOTSTRAP) {
-    var app = new App({mediator: mediator});
-    app.$el.appendTo("body");
-    app.render();
+    var layout = new Layout({mediator: mediator});
+    layout.$el.appendTo("body");
+    layout.render();
   }
 
   Backbone.history.start({pushState: true});

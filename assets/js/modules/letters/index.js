@@ -2,23 +2,22 @@
  * Letters module router
  */
 define([
-  "backbone",
-  "letters/collections/letters",
-  "letters/models/letter",
-  "letters/views/index",
-  "letters/views/form"
+  "app",
+  "modules/letters/collections/letters",
+  "modules/letters/models/letter",
+  "modules/letters/views/index",
+  "modules/letters/views/form"
 ], function (
-  Backbone,
+  App,
   Letters,
   Letter,
   IndexView,
   FormView
 ) {
 
-  var Router = Backbone.Router.extend({
+  return App.Router.extend({
 
     initialize: function (options) {
-      this.mediator = options.mediator;
       this.collection = new Letters([], {mediator: this.mediator});
       this.collection.fetch();
     },
@@ -52,7 +51,5 @@ define([
     }
 
   });
-
-  return Router;
 
 });

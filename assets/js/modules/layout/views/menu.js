@@ -2,25 +2,18 @@
  * Main menu for mobile devices
  */
 define([
-  "underscore",
-  "backbone",
-  "text!app/templates/menu.html"
+  "app",
+  "text!modules/layout/templates/menu.html"
 ], function (
-  _,
-  Backbone,
+  App,
   template
 ) {
 
-  var View = Backbone.View.extend({
+  return App.View.extend({
 
-    el: false,
-
-    manage: true,
-
-    template: _.template(template),
+    template: template,
 
     initialize: function (options) {
-      this.mediator = options.mediator;
       this.listenTo(this.mediator, "mobile:menu", this.toggleMenu);
     },
 
@@ -42,7 +35,5 @@ define([
     }
 
   });
-
-  return View;
 
 });

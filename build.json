@@ -1,20 +1,22 @@
 {
-  "baseUrl": "assets/js/modules",
+  "baseUrl": "assets/js",
   "paths": {
     "requireLib":
-      "../components/requirejs/require",
+      "components/requirejs/require",
     "jquery":
-      "../components/jquery/jquery",
+      "components/jquery/jquery",
     "backbone":
-      "../components/backbone/backbone",
+      "components/backbone/backbone",
     "underscore":
-      "../components/underscore/underscore",
+      "components/underscore/underscore",
     "layoutmanager":
-      "../components/layoutmanager/backbone.layoutmanager",
+      "components/layoutmanager/backbone.layoutmanager",
     "localStorage":
-      "../components/backbone.localStorage/backbone.localStorage",
+      "components/backbone.localStorage/backbone.localStorage",
     "text":
-      "../components/requirejs-text/text"
+      "components/requirejs-text/text",
+    "app":
+      "modules/app/index"
   },
   "shim": {
     "underscore": {
@@ -29,7 +31,7 @@
       "exports": "Backbone.Layout"
     }
   },
-  "name": "../main",
+  "name": "main",
   "out": "public/main.js",
   "include": ["requireLib"],
   "preserveLicenseComments": false

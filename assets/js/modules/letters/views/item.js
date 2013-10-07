@@ -2,27 +2,25 @@
  * Letters Item View
  */
 define([
-  'underscore',
-  'backbone',
-  'text!letters/templates/item.html'
+  "app",
+  "text!modules/letters/templates/item.html"
 ], function (
-  _,
-  Backbone,
+  App,
   template
 ) {
 
-  var View = Backbone.View.extend({
+  return App.View.extend({
 
-    template: _.template(template),
+    template: template,
 
     initialize: function () {
-      this.listenTo(this.model, 'change', this.render);
-      this.listenTo(this.model, 'destroy', this.remove);
+      this.listenTo(this.model, "change", this.render);
+      this.listenTo(this.model, "destroy", this.remove);
     },
 
     events: {
-      'click .icon-rocket' : 'send',
-      'click .icon-trash'  : 'destroy'
+      "click .icon-rocket" : "send",
+      "click .icon-trash"  : "destroy"
     },
 
     serialize: function () {
@@ -40,8 +38,6 @@ define([
     }
 
   });
-
-  return View;
 
 });
 

@@ -1,21 +1,19 @@
 /*
- * Application skeleton layout
+ * Application Skeleton Layout
  */
 define([
-  "backbone",
-  "text!app/templates/layout.html",
-  "app/views/navbar",
-  "app/views/menu"
+  "app",
+  "text!modules/layout/templates/layout.html",
+  "modules/layout/views/navbar",
+  "modules/layout/views/menu"
 ], function (
-  Backbone,
+  App,
   template,
   NavbarView,
   MenuView
 ) {
 
-  var App = Backbone.View.extend({
-
-    manage: true,
+  return App.View.extend({
 
     template: template,
 
@@ -79,5 +77,4 @@ define([
 
   });
 
-  return App;
 });

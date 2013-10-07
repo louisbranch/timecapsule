@@ -2,32 +2,29 @@
  * Letters Index View
  */
 define([
-  'backbone',
-  'letters/views/item',
-  'text!letters/templates/index.html'
+  "app",
+  "modules/letters/views/item",
+  "text!modules/letters/templates/index.html"
 ], function (
-  Backbone,
+  App,
   ItewView,
   template
 ) {
 
-  var View = Backbone.View.extend({
+  return App.View.extend({
 
     template: template,
 
     initialize: function () {
-      this.listenTo(this.collection, 'change', this.render);
+      this.listenTo(this.collection, "change", this.render);
     },
 
     beforeRender: function () {
       this.collection.each(function (model) {
-        this.insertView('ul', new ItewView({model: model}));
+        this.insertView("ul", new ItewView({model: model}));
       }, this);
     }
 
   });
 
-  return View;
-
 });
-

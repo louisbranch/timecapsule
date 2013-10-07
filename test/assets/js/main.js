@@ -1,24 +1,24 @@
 requirejs.config({
-  baseUrl: "/assets/js/modules",
+  baseUrl: "/assets/js",
   paths: {
     jquery:
-      "/assets/js/components/jquery/jquery",
+      "components/jquery/jquery",
     backbone:
-      "/assets/js/components/backbone/backbone",
+      "components/backbone/backbone",
     underscore:
-      "/assets/js/components/underscore/underscore",
+      "components/underscore/underscore",
     layoutmanager:
-      "/assets/js/components/layoutmanager/backbone.layoutmanager",
+      "components/layoutmanager/backbone.layoutmanager",
     localStorage:
-      "/assets/js/components/backbone.localStorage/backbone.localStorage",
+      "components/backbone.localStorage/backbone.localStorage",
     text:
-      "/assets/js/components/requirejs-text/text",
+      "components/requirejs-text/text",
     test:
       "/test/assets/js",
     mocha:
-      "/assets/js/components/mocha/mocha",
+      "components/mocha/mocha",
     chai:
-      "/assets/js/components/chai/chai"
+      "components/chai/chai"
   },
   shim: {
     underscore: {
@@ -51,8 +51,7 @@ require(["mocha", "chai"], function (mocha, chai) {
   window.assert = chai.assert;
 
   require([
-    "test/modules/app/main",
-    "test/modules/services/services",
+    "test/modules/services/index",
     "test/modules/services/dates_service",
     "test/modules/services/color_service",
     "test/modules/services/auto_links_service"
