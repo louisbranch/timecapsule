@@ -20,13 +20,11 @@ app.use(passport.session());
 var auth = require("./lib/auth");
 var config = require("./lib/auth/config");
 var home = require("./lib/home");
-var dashboard = require("./lib/dashboard");
 var letters = require("./lib/letters");
 
 config(passport);
 app.use(home);
 app.use(auth);
-app.use(dashboard);
 app.use(letters);
 
 app.listen(port);

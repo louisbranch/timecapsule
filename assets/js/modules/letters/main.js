@@ -2,11 +2,11 @@
  * Letters module router
  */
 define([
-  'backbone',
-  'letters/collections/letters',
-  'letters/models/letter',
-  'letters/views/index',
-  'letters/views/form'
+  "backbone",
+  "letters/collections/letters",
+  "letters/models/letter",
+  "letters/views/index",
+  "letters/views/form"
 ], function (
   Backbone,
   Letters,
@@ -24,22 +24,21 @@ define([
     },
 
     routes: {
-      ''            : 'index',
-      'letters'     : 'index',
-      'letters/new' : 'create',
-      'letters/:id' : 'update'
+      "letters"     : "index",
+      "letters/new" : "create",
+      "letters/:id" : "update"
     },
 
     index: function () {
       this.collection.fetch();
       var view = new IndexView({collection: this.collection});
-      this.mediator.trigger('render', {view: view, url: '/letters'});
+      this.mediator.trigger("render", {view: view, url: "/letters"});
     },
 
     create: function () {
       var model = new Letter(null, {mediator: this.mediator});
       this.collection.add(model);
-      this.form(model, '/letters/new');
+      this.form(model, "/letters/new");
     },
 
     update: function (id) {
@@ -49,7 +48,7 @@ define([
 
     form: function (model, url) {
       var view = new FormView({model: model});
-      this.mediator.trigger('render', {view: view, url: url});
+      this.mediator.trigger("render", {view: view, url: url});
     }
 
   });

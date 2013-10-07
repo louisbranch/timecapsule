@@ -1,15 +1,17 @@
 requirejs([
-  'backbone',
-  'layoutmanager',
-  'mediator/main',
-  'app/main',
-  'letters/main',
-  'services/services'
+  "backbone",
+  "layoutmanager",
+  "mediator/main",
+  "app/main",
+  "home/index",
+  "letters/main",
+  "services/services"
 ], function (
   Backbone,
   Layout,
   Mediator,
   App,
+  Home,
   Letter,
   services
 ) {
@@ -37,19 +39,22 @@ requirejs([
   /*
    * Load Modules
    */
+  new Home({mediator: mediator});
   new Letter({mediator: mediator});
 
   /*
    * Render initial app layout
    */
-  var app = new App({mediator: mediator});
-  app.$el.appendTo('body');
-  app.render();
+  if (window.BOOTSTRAP) {
+    var app = new App({mediator: mediator});
+    app.$el.appendTo("body");
+    app.render();
+  }
 
   Backbone.history.start({pushState: true});
 
   //TODO remove
-  mediator.on('all', function () {
+  mediator.on("all", function () {
     console.log(arguments);
   });
 
