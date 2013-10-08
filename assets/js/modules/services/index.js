@@ -1,23 +1,27 @@
 define([
  "underscore",
+ "modules/services/authentication",
+ "modules/services/auto_links",
  "modules/services/color_service",
- "modules/services/dates_service",
- "modules/services/auto_links_service",
+ "modules/services/dates_service"
 ], function (
   _,
+  authentication,
+  autoLinks,
   color,
-  dates,
-  autoLinks
+  dates
 ) {
 
   var services = {
+    authentication: authentication,
+    autoLinks: autoLinks,
     color: color,
-    dates: dates,
-    autoLinks: autoLinks
+    dates: dates
   };
 
   function load(mediator) {
-    _.each(services, function (service, name) {
+    _.each(services, function (Service, name) {
+      var service = new Service(mediator);
       mediator.define(name, service);
     });
   }

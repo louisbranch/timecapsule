@@ -23,6 +23,14 @@ define([
       this.navigation = new NavbarView({mediator: this.mediator});
       this.mobileMenu = new MenuView({mediator: this.mediator});
       this.mainContent = new MainContentView({mediator: this.mediator});
+
+      this.mediator.require("autoLinks", function (service) {
+        service.enable();
+      });
+
+      this.mediator.require("authentication", function (service) {
+        service.enable();
+      });
     },
 
     beforeRender: function () {

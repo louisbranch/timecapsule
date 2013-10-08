@@ -1,18 +1,22 @@
 define(function () {
 
+  function Color(mediator) {
+    this.mediator = mediator;
+  }
+
   /*
    * Creates a random HSV (hue, saturation,
    * value) color and convert to RGB
    */
-  function random() {
+  Color.prototype.random = function () {
     var h = Math.random();
     var s = 0.5;
     var v = 0.45;
-    return hsvToRgb(h, s, v);
-  }
+    return this._hsvToRgb(h, s, v);
+  };
 
   /* Convert hsv color to rgb */
-  function hsvToRgb(h, s, v) {
+  Color.prototype._hsvToRgb = function (h, s, v) {
     var hI = Math.floor(h * 6);
     var f = h * 6 - hI;
     var p = v * (1 - s);
@@ -46,10 +50,8 @@ define(function () {
     b = Math.round(b * 256);
 
     return {r: r, g: g, b: b};
-  }
-
-  return {
-    random: random
   };
+
+  return Color;
 
 });

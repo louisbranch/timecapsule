@@ -14894,7 +14894,8 @@ define('modules/layout/views/navbar',[
     },
 
     events: {
-      "click .toggle-topbar" : "toggleMenu"
+      "click .toggle-topbar" : "toggleMenu",
+      "click #browserid-login" : "login"
     },
 
     toggleMenu: function () {
@@ -14919,11 +14920,15 @@ define('modules/layout/views/navbar',[
         .addClass("active");
     },
 
+    login: function () {
+      this.mediator.require("authentication", function (authentication) {
+        authentication.login();
+      });
+    }
 
   });
 
 });
-
 
 /*
  * Main menu for mobile devices
@@ -15032,6 +15037,14 @@ define('modules/layout/index',[
       this.navigation = new NavbarView({mediator: this.mediator});
       this.mobileMenu = new MenuView({mediator: this.mediator});
       this.mainContent = new MainContentView({mediator: this.mediator});
+
+      this.mediator.require("autoLinks", function (service) {
+        service.enable();
+      });
+
+      this.mediator.require("authentication", function (service) {
+        service.enable();
+      });
     },
 
     beforeRender: function () {
@@ -15045,66 +15058,13 @@ define('modules/layout/index',[
 
 });
 
-define('modules/home/lib/auth',[
-  "jquery"
-], function (
-  $
-) {
-
-  return function (mediator) {
-
-    navigator.id.watch({
-      onlogin: function (assertion) {
-        var req = $.ajax({
-          type: "POST",
-          url: "/auth/login",
-          data: {assertion: assertion}
-        });
-
-        req.done(function () {
-          mediator.navigate("/letters");
-        });
-
-        req.fail(function (xhr, status, err) {
-          navigator.id.logout();
-          console.log("Login failure: " + err);
-        });
-      },
-
-      onlogout: function () {
-
-        var req = $.ajax({
-          type: "POST",
-          url: "/auth/logout"
-        });
-
-        req.done(function () {
-          mediator.navigate("/");
-        });
-
-        req.fail(function (xhr, status, err) {
-          console.log("Logout failure: " + err);
-        });
-      }
-    });
-
-    $("#browserid-login").click(function () {
-      navigator.id.request();
-    });
-
-  };
-
-});
-
 /*
  * Home module router
  */
 define('modules/home/index',[
-  "app",
-  "modules/home/lib/auth"
+  "app"
 ], function (
-  App,
-  auth
+  App
 ) {
 
   return App.Router.extend({
@@ -15118,7 +15078,6 @@ define('modules/home/index',[
     },
 
     index: function () {
-      auth(this.mediator);
     }
 
   });
@@ -16070,21 +16029,123 @@ define('modules/letters/index',[
 
 });
 
+/*
+ * Browser ID (Mozilla Persona)
+ * Authentication Service
+ */
+define('modules/services/authentication',[
+  "jquery"
+], function (
+  $
+) {
+
+  function Authentication(mediator) {
+    this.mediator = mediator;
+  }
+
+  Authentication.prototype.enable = function () {
+    navigator.id.watch({
+      onlogin: this._onLogin.bind(this),
+      onlogout: this._onLogout.bind(this)
+    });
+  };
+
+  Authentication.prototype._onLogin = function (assertion) {
+    var mediator = this.mediator;
+
+    var req = $.ajax({
+      type: "POST",
+      url: "/auth/login",
+      data: {assertion: assertion}
+    });
+
+    req.done(function () {
+      mediator.navigate("/letters");
+    });
+
+    req.fail(function (xhr, status, err) {
+      navigator.id.logout();
+      console.log("Login failure: " + err);
+    });
+  };
+
+  Authentication.prototype._onLogout = function () {
+    var mediator = this.mediator;
+
+    var req = $.ajax({
+      type: "POST",
+      url: "/auth/logout"
+    });
+
+    req.done(function () {
+      mediator.navigate("/");
+    });
+
+    req.fail(function (xhr, status, err) {
+      console.log("Logout failure: " + err);
+    });
+  };
+
+  Authentication.prototype.login = function () {
+    navigator.id.request();
+  };
+
+  Authentication.prototype.logout = function () {
+    navigator.id.logout();
+  };
+
+  return Authentication;
+
+});
+
+define('modules/services/auto_links',["jquery"], function ($) {
+
+  function AutoLinks (options) {
+    this.mediator = options.mediator;
+  }
+
+  /*
+   * Hijack all clicks on links if they are on the same host
+   * and foward the path clicked to Backbone.history
+   * Skip this by adding data-bypass attribute to the link
+   */
+  AutoLinks.prototype.enable = function () {
+    var mediator = this.mediator;
+    $(document).on("click", "a:not([data-bypass])", function(evt) {
+      var $this = $(this);
+      var href = $this.prop("href");
+      var root = location.protocol + "//" + location.host + "/";
+      if (href && href.slice(0, root.length) === root) {
+        evt.preventDefault();
+        var path = $this[0].pathname;
+        mediator.trigger("navigate", path);
+      }
+    });
+  };
+
+  return AutoLinks;
+
+});
+
 define('modules/services/color_service',[],function () {
+
+  function Color(mediator) {
+    this.mediator = mediator;
+  }
 
   /*
    * Creates a random HSV (hue, saturation,
    * value) color and convert to RGB
    */
-  function random() {
+  Color.prototype.random = function () {
     var h = Math.random();
     var s = 0.5;
     var v = 0.45;
-    return hsvToRgb(h, s, v);
-  }
+    return this._hsvToRgb(h, s, v);
+  };
 
   /* Convert hsv color to rgb */
-  function hsvToRgb(h, s, v) {
+  Color.prototype._hsvToRgb = function (h, s, v) {
     var hI = Math.floor(h * 6);
     var f = h * 6 - hI;
     var p = v * (1 - s);
@@ -16118,17 +16179,15 @@ define('modules/services/color_service',[],function () {
     b = Math.round(b * 256);
 
     return {r: r, g: g, b: b};
-  }
-
-  return {
-    random: random
   };
+
+  return Color;
 
 });
 
 define('modules/services/dates_service',[],function () {
 
-  var months = [
+  var MONTHS = [
     'Jan', 'Feb', 'Mar', 'Apr',
     'May', 'Jun', 'Jul', 'Aug',
     'Sep', 'Oct', 'Nov', 'Dec'
@@ -16138,65 +16197,47 @@ define('modules/services/dates_service',[],function () {
    * Create an object with day, month and
    * year from a date
    */
-  function format (date) {
-    var n = date.getMonth() - 1;
+  function Data (date) {
+    this.date = date;
+  }
+
+  Data.prototype.format = function () {
+    var n = this.date.getMonth() - 1;
     return {
-      day: date.getDate(),
-      month: months[n],
-      year: date.getFullYear()
+      day: this.date.getDate(),
+      month: MONTHS[n],
+      year: this.date.getFullYear()
     };
-  }
-
-  return {
-    format: format
   };
 
-});
-
-define('modules/services/auto_links_service',['jquery'], function ($) {
-
-  /*
-   * Hijack all clicks on links if they are on the same host
-   * and foward the path clicked to Backbone.history
-   * Skip this by adding data-bypass attribute to the link
-   */
-  function enable (mediator) {
-    $(document).on('click', 'a:not([data-bypass])', function(evt) {
-      var href = { prop: $(this).prop('href'), attr: $(this).attr('href') };
-      var root = location.protocol + '//' + location.host + '/';
-      if (href.prop && href.prop.slice(0, root.length) === root) {
-        evt.preventDefault();
-        mediator.navigate(href.attr);
-      }
-    });
-  }
-
-  return {
-    enable: enable
-  };
+  return Data;
 
 });
 
 define('modules/services/index',[
  "underscore",
+ "modules/services/authentication",
+ "modules/services/auto_links",
  "modules/services/color_service",
- "modules/services/dates_service",
- "modules/services/auto_links_service",
+ "modules/services/dates_service"
 ], function (
   _,
+  authentication,
+  autoLinks,
   color,
-  dates,
-  autoLinks
+  dates
 ) {
 
   var services = {
+    authentication: authentication,
+    autoLinks: autoLinks,
     color: color,
-    dates: dates,
-    autoLinks: autoLinks
+    dates: dates
   };
 
   function load(mediator) {
-    _.each(services, function (service, name) {
+    _.each(services, function (Service, name) {
+      var service = new Service(mediator);
       mediator.define(name, service);
     });
   }

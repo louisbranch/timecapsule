@@ -2,11 +2,9 @@
  * Home module router
  */
 define([
-  "app",
-  "modules/home/lib/auth"
+  "app"
 ], function (
-  App,
-  auth
+  App
 ) {
 
   return App.Router.extend({
@@ -20,7 +18,6 @@ define([
     },
 
     index: function () {
-      auth(this.mediator);
     }
 
   });
