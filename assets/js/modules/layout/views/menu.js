@@ -2,16 +2,14 @@
  * Main menu for mobile devices
  */
 define([
-  "app",
-  "text!modules/layout/templates/menu.html"
+  "app"
 ], function (
-  App,
-  template
+  App
 ) {
 
   return App.View.extend({
 
-    template: template,
+    template: "#main-mobile-menu",
 
     initialize: function (options) {
       this.listenTo(this.mediator, "mobile:menu", this.toggleMenu);

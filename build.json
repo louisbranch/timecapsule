@@ -34,5 +34,6 @@
   "name": "main",
   "out": "public/main.js",
   "include": ["requireLib"],
-  "preserveLicenseComments": false
+  "preserveLicenseComments": false,
+  "optimize": "none"
 }

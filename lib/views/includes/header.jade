@@ -1,17 +1,28 @@
-.contain-to-grid
-  nav.top-bar
-    ul.title-area
-      li.name
-        h1
-          a(href="/")
-            i.icon-rocket
-            |  Timecapsule
-      li.toggle-topbar.menu-icon
-        a(href="#")
-          span
-    section.top-bar-section
-      ul.right
-        li
-          a#browserid-login(href="#")
-            i.icon-signin
-            |  Enter
+header#main-header
+  .contain-to-grid
+    nav.top-bar
+      ul.title-area
+        li.name
+          h1
+            a(href="/")
+              i.icon-rocket
+              |  Timecapsule
+        li.toggle-topbar.menu-icon
+          a(href="#")
+            span
+      section.top-bar-section
+        ul.left
+          li.divider
+          li
+            a(href="/letters/new")
+              i.icon-pencil
+              |  New Letter
+        ul.right
+          li
+            a#browserid-login(href="#")
+              i.icon-signin
+              |  Enter
+          li
+            a#browserid-logout(href="#")
+              i.icon-signout
+              |  Leave

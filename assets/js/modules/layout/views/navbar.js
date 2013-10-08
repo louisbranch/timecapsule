@@ -2,25 +2,45 @@
  * Navigation bar view
  */
 define([
-  'app',
-  'text!modules/layout/templates/navbar.html'
+  "app"
 ], function (
-  App,
-  template
+  App
 ) {
 
   return App.View.extend({
 
-    template: template,
+    template: "#main-header",
+
+    initialize: function () {
+      this.listenTo(this.mediator, "render", this.activateUrl);
+    },
 
     events: {
-      'click .toggle-topbar' : 'toggleMenu'
+      "click .toggle-topbar" : "toggleMenu"
     },
 
     toggleMenu: function () {
-      this.mediator.trigger('mobile:menu');
+      this.mediator.trigger("mobile:menu");
       return false;
-    }
+    },
+
+    /*
+     * Change navigation active link when a
+     * section renders
+     */
+    activateUrl: function (options) {
+      var url = options.url;
+      this.$el
+        .find(".nav li")
+        .removeClass("active");
+
+      if (!url) return;
+      this.$el
+        .find("a[href='"+ url +"']")
+        .closest("li")
+        .addClass("active");
+    },
+
 
   });
 

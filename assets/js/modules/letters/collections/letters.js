@@ -4,6 +4,7 @@
 define([
   "app",
   "modules/letters/models/letter",
+  "backbone",
   "localStorage"
 ], function (
   App,

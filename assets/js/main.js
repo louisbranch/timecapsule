@@ -34,11 +34,9 @@ requirejs([
   /*
    * Render initial app layout
    */
-  if (window.BOOTSTRAP) {
-    var layout = new Layout({mediator: mediator});
-    layout.$el.appendTo("body");
-    layout.render();
-  }
+  var layout = new Layout({mediator: mediator});
+  layout.$el.appendTo("body");
+  layout.render();
 
   Backbone.history.start({pushState: true});
 

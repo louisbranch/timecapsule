@@ -18,7 +18,9 @@ requirejs.config({
     mocha:
       "components/mocha/mocha",
     chai:
-      "components/chai/chai"
+      "components/chai/chai",
+    sinon:
+      "components/sinonjs/sinon"
   },
   shim: {
     underscore: {
@@ -37,6 +39,9 @@ requirejs.config({
     },
     chai: {
       exports: "chai"
+    },
+    sinon: {
+      exports: "sinon"
     }
   }
 });
@@ -54,7 +59,7 @@ require(["mocha", "chai"], function (mocha, chai) {
     "test/modules/services/index",
     "test/modules/services/dates_service",
     "test/modules/services/color_service",
-    "test/modules/services/auto_links_service"
+    "test/modules/services/auto_links"
   ], function () {
 
     if (window.mochaPhantomJS) mochaPhantomJS.run();
