@@ -1,25 +1,27 @@
+<div>
 <li class="letter-item">
-  <div class="row" style="background-color: rgb(<%= color %>)">
+  <div class="row" style="background-color: rgb({{color}})">
     <div class="letter-date large-3 columns">
-      <span><%= date.day %></span>
-      <span><%= date.month %></span>
-      <span><%= date.year %></span>
+      <span>{{date.day}}</span>
+      <span>{{date.month}}</span>
+      <span>{{date.year}}</span>
     </div>
     <div class="large-9 columns">
-      <a href="/letters/<%= id %>">
-        <h3><%= title %></h3>
+      <a href="/letters/{{id}}">
+        <h3>{{title}}</h3>
       </a>
       <div class="letter-actions">
-        <a href="/letters/<%= id %>">
+        <a href="/letters/{{id}}">
           <i class="icon-pencil"></i>
         </a>
-        <a href="/letters/<%= id %>">
+        <a href="/letters/{{id}}">
           <i class="icon-rocket"></i>
         </a>
-        <a href="/letters/<%= id %>">
+        <a href="/letters/{{id}}">
           <i class="icon-trash"></i>
         </a>
       </div>
     </div>
   </div>
 </li>
+</div>

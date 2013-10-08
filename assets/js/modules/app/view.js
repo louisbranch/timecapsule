@@ -4,11 +4,11 @@
 define([
   "backbone",
   "layoutmanager",
-  "underscore"
+  "handlebars"
 ], function (
   Backbone,
   LayoutManager,
-  _
+  Handlebars
 ) {
 
   LayoutManager.configure({
@@ -18,7 +18,8 @@ define([
     /* Render views using Handlebars if they have a context */
     renderTemplate: function (template, context) {
       if (!context) return template();
-      return _.template(template(), context);
+      var compiled = Handlebars.compile(template());
+      return compiled(context);
     }
   });
 

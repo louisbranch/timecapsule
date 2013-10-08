@@ -10,16 +10,16 @@ define(function () {
    * Create an object with day, month and
    * year from a date
    */
-  function Data (date) {
-    this.date = date;
+  function Data (mediator) {
+    this.mediator = mediator;
   }
 
-  Data.prototype.format = function () {
-    var n = this.date.getMonth() - 1;
+  Data.prototype.format = function (date) {
+    var n = date.getMonth() - 1;
     return {
-      day: this.date.getDate(),
+      day: date.getDate(),
       month: MONTHS[n],
-      year: this.date.getFullYear()
+      year: date.getFullYear()
     };
   };
 

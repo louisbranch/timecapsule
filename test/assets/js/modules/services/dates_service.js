@@ -5,7 +5,7 @@ define(["modules/services/dates_service"], function (Data) {
   describe("Dates service", function(){
 
     it("formats date to display on view", function(){
-      var r = new Data(date).format();
+      var r = new Data().format(date);
       assert.deepEqual(r, {
         day: 25,
         month: "Jun",

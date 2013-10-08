@@ -5,7 +5,7 @@ define(["jquery", "sinon", "modules/services/auto_links"], function ($, sinon, A
 
     beforeEach(function(){
       stub = {trigger: sinon.spy()};
-      links = new AutoLinks({mediator: stub});
+      links = new AutoLinks(stub);
       links.enable();
       $("#fixture")
         .append("<a href='/test' id='test-link'>Link</a>")

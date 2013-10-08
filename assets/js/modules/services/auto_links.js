@@ -1,7 +1,7 @@
 define(["jquery"], function ($) {
 
-  function AutoLinks (options) {
-    this.mediator = options.mediator;
+  function AutoLinks (mediator) {
+    this.mediator = mediator;
   }
 
   /*

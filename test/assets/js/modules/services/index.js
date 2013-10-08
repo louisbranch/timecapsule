@@ -8,8 +8,12 @@ define(["modules/services/index"], function (services) {
         defined[name] = service;
       }};
       services.load(stub);
-      assert.deepEqual(Object.keys(defined),
-                       ["color", "dates", "autoLinks"]);
+      assert.deepEqual(Object.keys(defined), [
+        "authentication",
+        "autoLinks",
+        "color",
+        "dates"
+      ]);
     });
 
   });

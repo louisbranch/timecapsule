@@ -19,6 +19,7 @@
     "backbone.localStorage": "~1.1.6",
     "mocha": "~1.12.0",
     "chai": "~1.7.2",
-    "sinonjs": "~1.7.1"
+    "sinonjs": "~1.7.1",
+    "handlebars": "~1.0.0"
   }
 }

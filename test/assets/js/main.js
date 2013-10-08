@@ -20,7 +20,9 @@ requirejs.config({
     chai:
       "components/chai/chai",
     sinon:
-      "components/sinonjs/sinon"
+      "components/sinonjs/sinon",
+    handlebars:
+      "components/handlebars/handlebars"
   },
   shim: {
     underscore: {
@@ -42,6 +44,9 @@ requirejs.config({
     },
     sinon: {
       exports: "sinon"
+    },
+    handlebars: {
+      exports: "Handlebars"
     }
   }
 });

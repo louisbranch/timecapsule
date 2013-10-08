@@ -15,6 +15,8 @@
       "components/backbone.localStorage/backbone.localStorage",
     "text":
       "components/requirejs-text/text",
+    "handlebars":
+      "components/handlebars/handlebars",
     "app":
       "modules/app/index"
   },
@@ -29,6 +31,9 @@
     "layoutmanager": {
       "deps": ["backbone"],
       "exports": "Backbone.Layout"
+    },
+    "handlebars": {
+      "exports": "Handlebars"
     }
   },
   "name": "main",
