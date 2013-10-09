@@ -18193,7 +18193,7 @@ define('modules/letters/views/index',[
 
 });
 
-define('text!modules/letters/templates/form.html',[],function () { return '<div class="row">\n  <form class="letter-form large-12 small-12 columns custom">\n    <div>\n      <input id="letter-title" type="text" placeholder="Title..." value="<%= title %>" tabindex="1" autofocus></input>\n    </div>\n    <div>\n      <textarea id="letter-content" rows="10" placeholder="Content..." tabindex="2"><%= content %></textarea>\n    </div>\n    <div>\n      <select id="letter-years" name="years" class="medium custom dropdown">\n        <option value="1">In 1 year</option>\n        <option value="5">In 5 years</option>\n        <option value="10" selected>In 10 years</option>\n        <option value="20">In 20 years</option>\n      </select>\n    </div>\n    <ul class="button-group">\n      <li>\n        <button type="submit" class="secondary" tabindex="6">\n          <i class="icon-save"></i>\n          Save\n        </button>\n      </li>\n      <li>\n        <button id="letter-send" type="button" tabindex="7">\n          <i class="icon-rocket"></i>\n          Send Letter\n        </button>\n      </li>\n    </ul>\n  </form>\n</div>\n';});
+define('text!modules/letters/templates/form.html',[],function () { return '<div class="row">\n  <form class="letter-form large-12 small-12 columns custom">\n    <div>\n      <input id="letter-title" type="text" placeholder="Title..." value="{{title}}" tabindex="1" autofocus></input>\n    </div>\n    <div>\n      <textarea id="letter-content" rows="10" placeholder="Content..." tabindex="2">{{content}}</textarea>\n    </div>\n    <div>\n      <select id="letter-years" name="years" class="medium custom dropdown">\n        <option value="1">In 1 year</option>\n        <option value="5">In 5 years</option>\n        <option value="10" selected>In 10 years</option>\n        <option value="20">In 20 years</option>\n      </select>\n    </div>\n    <ul class="button-group">\n      <li>\n        <button type="submit" class="secondary" tabindex="6">\n          <i class="icon-save"></i>\n          Save\n        </button>\n      </li>\n      <li>\n        <button id="letter-send" type="button" tabindex="7">\n          <i class="icon-rocket"></i>\n          Send Letter\n        </button>\n      </li>\n    </ul>\n  </form>\n</div>\n';});
 
 /*
  * Letters form view
@@ -18504,17 +18504,17 @@ define('modules/services/navigator',[
   Backbone
 ) {
 
-  function Navigator (mediator) {
+  function Nav (mediator) {
     this.mediator = mediator;
     this.mediator.on("navigate", this.navigate, this);
   }
 
   /* Trigger Backbone navigation across multiple routers */
-  Navigator.prototype.navigate = function (path) {
+  Nav.prototype.navigate = function (path) {
     Backbone.history.navigate(path, true);
   };
 
-  return Navigator;
+  return Nav;
 
 });
 
@@ -18532,7 +18532,7 @@ define('modules/services/index',[
   autoLinks,
   color,
   dates,
-  navigator
+  nav
 ) {
 
   var services = {
@@ -18540,7 +18540,7 @@ define('modules/services/index',[
     autoLinks: autoLinks,
     color: color,
     dates: dates,
-    navigator: navigator
+    nav: nav
   };
 
   function load(mediator) {

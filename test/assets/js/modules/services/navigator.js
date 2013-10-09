@@ -4,31 +4,31 @@ define([
   "sinon"
 ], function (
   Backbone,
-  Navigator,
+  Nav,
   sinon
 ) {
 
-  describe("Navigator Service", function(){
-    var navigator, mediator;
+  describe("Nav Service", function(){
+    var nav, mediator;
 
-    before(function(){
+    beforeEach(function(){
       sinon.spy(Backbone.history, "navigate");
       mediator = {on: sinon.spy()};
-      navigator = new Navigator(mediator);
+      nav = new Nav(mediator);
     });
 
-    after(function(){
+    afterEach(function(){
       Backbone.history.navigate.restore();
     });
 
     it("listens to navigate event", function(){
-      assert(mediator.on.calledWith("navigate", navigator.navigate, navigator));
+      assert(mediator.on.calledWith("navigate", nav.navigate, nav));
     });
 
     describe(".navigate", function(){
 
       it("triggers backbone navigate", function(){
-        navigator.navigate("/test");
+        nav.navigate("/test");
         assert(Backbone.history.navigate.calledWith("/test", true));
       });
 

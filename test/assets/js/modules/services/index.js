@@ -6,14 +6,14 @@ define(["modules/services/index"], function (services) {
       var defined = {};
       var stub = {define: function (name, service) {
         defined[name] = service;
-      }};
+      }, on: function () {}};
       services.load(stub);
       assert.deepEqual(Object.keys(defined), [
         "authentication",
         "autoLinks",
         "color",
         "dates",
-        "navigator"
+        "nav"
       ]);
     });
 

@@ -11,7 +11,7 @@ define([
   autoLinks,
   color,
   dates,
-  navigator
+  nav
 ) {
 
   var services = {
@@ -19,7 +19,7 @@ define([
     autoLinks: autoLinks,
     color: color,
     dates: dates,
-    navigator: navigator
+    nav: nav
   };
 
   function load(mediator) {

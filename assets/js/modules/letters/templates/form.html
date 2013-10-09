@@ -1,10 +1,10 @@
 <div class="row">
   <form class="letter-form large-12 small-12 columns custom">
     <div>
-      <input id="letter-title" type="text" placeholder="Title..." value="<%= title %>" tabindex="1" autofocus></input>
+      <input id="letter-title" type="text" placeholder="Title..." value="{{title}}" tabindex="1" autofocus></input>
     </div>
     <div>
-      <textarea id="letter-content" rows="10" placeholder="Content..." tabindex="2"><%= content %></textarea>
+      <textarea id="letter-content" rows="10" placeholder="Content..." tabindex="2">{{content}}</textarea>
     </div>
     <div>
       <select id="letter-years" name="years" class="medium custom dropdown">
