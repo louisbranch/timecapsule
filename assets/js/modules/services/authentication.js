@@ -29,7 +29,7 @@ define([
     });
 
     req.done(function () {
-      mediator.navigate("/letters");
+      mediator.trigger("navigate", "/letters");
     });
 
     req.fail(function (xhr, status, err) {
@@ -47,7 +47,7 @@ define([
     });
 
     req.done(function () {
-      mediator.navigate("/");
+      mediator.trigger("navigate", "/");
     });
 
     req.fail(function (xhr, status, err) {

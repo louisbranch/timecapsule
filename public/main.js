@@ -13731,10 +13731,6 @@ define('modules/mediator/index',[
     _.extend(this, Backbone.Events);
   }
 
-  Mediator.prototype.navigate = function (path) {
-    Backbone.history.navigate(path, true);
-  };
-
   Mediator.prototype.define = function (name, service) {
     if (this.services[name]) new Error('Service already provided!');
     this.services[name] = service;
@@ -18285,7 +18281,7 @@ define('modules/letters/index',[
     routes: {
       "letters"     : "index",
       "letters/new" : "create",
-      "letters/:id" : "update"
+      "letters/:id" : "show"
     },
 
     index: function () {
@@ -18300,7 +18296,7 @@ define('modules/letters/index',[
       this.form(model, "/letters/new");
     },
 
-    update: function (id) {
+    show: function (id) {
       var model = this.collection.get(id);
       this.form(model);
     },
@@ -18345,7 +18341,7 @@ define('modules/services/authentication',[
     });
 
     req.done(function () {
-      mediator.navigate("/letters");
+      mediator.trigger("navigate", "/letters");
     });
 
     req.fail(function (xhr, status, err) {
@@ -18363,7 +18359,7 @@ define('modules/services/authentication',[
     });
 
     req.done(function () {
-      mediator.navigate("/");
+      mediator.trigger("navigate", "/");
     });
 
     req.fail(function (xhr, status, err) {
@@ -18499,25 +18495,52 @@ define('modules/services/dates_service',[],function () {
 
 });
 
+/*
+ * Backbone navigaton wrapper
+ */
+define('modules/services/navigator',[
+  "backbone"
+], function (
+  Backbone
+) {
+
+  function Navigator (mediator) {
+    this.mediator = mediator;
+    this.mediator.on("navigate", this.navigate, this);
+  }
+
+  /* Trigger Backbone navigation across multiple routers */
+  Navigator.prototype.navigate = function (path) {
+    Backbone.history.navigate(path, true);
+  };
+
+  return Navigator;
+
+});
+
+
 define('modules/services/index',[
  "underscore",
  "modules/services/authentication",
  "modules/services/auto_links",
  "modules/services/color_service",
- "modules/services/dates_service"
+ "modules/services/dates_service",
+ "modules/services/navigator"
 ], function (
   _,
   authentication,
   autoLinks,
   color,
-  dates
+  dates,
+  navigator
 ) {
 
   var services = {
     authentication: authentication,
     autoLinks: autoLinks,
     color: color,
-    dates: dates
+    dates: dates,
+    navigator: navigator
   };
 
   function load(mediator) {

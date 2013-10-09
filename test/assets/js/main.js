@@ -62,9 +62,10 @@ require(["mocha", "chai"], function (mocha, chai) {
 
   require([
     "test/modules/services/index",
-    "test/modules/services/dates_service",
+    "test/modules/services/auto_links",
     "test/modules/services/color_service",
-    "test/modules/services/auto_links"
+    "test/modules/services/dates_service",
+    "test/modules/services/navigator"
   ], function () {
 
     if (window.mochaPhantomJS) mochaPhantomJS.run();

@@ -11,10 +11,6 @@ define([
     _.extend(this, Backbone.Events);
   }
 
-  Mediator.prototype.navigate = function (path) {
-    Backbone.history.navigate(path, true);
-  };
-
   Mediator.prototype.define = function (name, service) {
     if (this.services[name]) new Error('Service already provided!');
     this.services[name] = service;

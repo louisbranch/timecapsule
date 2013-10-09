@@ -12,7 +12,8 @@ define(["modules/services/index"], function (services) {
         "authentication",
         "autoLinks",
         "color",
-        "dates"
+        "dates",
+        "navigator"
       ]);
     });
 

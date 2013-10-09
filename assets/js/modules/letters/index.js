@@ -25,7 +25,7 @@ define([
     routes: {
       "letters"     : "index",
       "letters/new" : "create",
-      "letters/:id" : "update"
+      "letters/:id" : "show"
     },
 
     index: function () {
@@ -40,7 +40,7 @@ define([
       this.form(model, "/letters/new");
     },
 
-    update: function (id) {
+    show: function (id) {
       var model = this.collection.get(id);
       this.form(model);
     },

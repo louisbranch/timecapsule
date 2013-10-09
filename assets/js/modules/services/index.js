@@ -3,20 +3,23 @@ define([
  "modules/services/authentication",
  "modules/services/auto_links",
  "modules/services/color_service",
- "modules/services/dates_service"
+ "modules/services/dates_service",
+ "modules/services/navigator"
 ], function (
   _,
   authentication,
   autoLinks,
   color,
-  dates
+  dates,
+  navigator
 ) {
 
   var services = {
     authentication: authentication,
     autoLinks: autoLinks,
     color: color,
-    dates: dates
+    dates: dates,
+    navigator: navigator
   };
 
   function load(mediator) {
