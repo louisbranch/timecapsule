@@ -62,6 +62,7 @@ define([
 
   Authentication.prototype.logout = function () {
     navigator.id.logout();
+    delete window.user;
   };
 
   return Authentication;

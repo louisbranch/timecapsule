@@ -17178,7 +17178,8 @@ define('modules/layout/views/navbar',[
 
     events: {
       "click .toggle-topbar" : "toggleMenu",
-      "click #browserid-login" : "login"
+      "click #login" : "login",
+      "click #logout" : "logout"
     },
 
     toggleMenu: function () {
@@ -17204,9 +17205,16 @@ define('modules/layout/views/navbar',[
     },
 
     login: function () {
-      this.mediator.require("authentication", function (authentication) {
-        authentication.login();
+      this.mediator.require("authentication", function (auth) {
+        auth.login();
       });
+    },
+
+    logout: function () {
+      this.mediator.require("authentication", function (auth) {
+        auth.logout();
+      });
+      this.mediator.trigger("navigate", "/");
     }
 
   });
@@ -17293,7 +17301,6 @@ define('modules/layout/views/content',[
   });
 
 });
-
 
 /*
  * Application Skeleton Layout
@@ -18135,6 +18142,7 @@ define('modules/services/authentication',[
 
   Authentication.prototype.logout = function () {
     navigator.id.logout();
+    delete window.user;
   };
 
   return Authentication;

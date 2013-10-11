@@ -17,7 +17,8 @@ define([
 
     events: {
       "click .toggle-topbar" : "toggleMenu",
-      "click #browserid-login" : "login"
+      "click #login" : "login",
+      "click #logout" : "logout"
     },
 
     toggleMenu: function () {
@@ -43,9 +44,16 @@ define([
     },
 
     login: function () {
-      this.mediator.require("authentication", function (authentication) {
-        authentication.login();
+      this.mediator.require("authentication", function (auth) {
+        auth.login();
       });
+    },
+
+    logout: function () {
+      this.mediator.require("authentication", function (auth) {
+        auth.logout();
+      });
+      this.mediator.trigger("navigate", "/");
     }
 
   });
