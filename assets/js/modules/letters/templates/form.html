@@ -1,32 +1,34 @@
-<div class="row">
-  <form class="letter-form large-12 small-12 columns custom">
-    <div>
-      <input id="letter-title" type="text" placeholder="Title..." value="{{title}}" tabindex="1" autofocus></input>
-    </div>
-    <div>
-      <textarea id="letter-content" rows="10" placeholder="Content..." tabindex="2">{{content}}</textarea>
-    </div>
-    <div>
-      <select id="letter-years" name="years" class="medium custom dropdown">
-        <option value="1">In 1 year</option>
-        <option value="5">In 5 years</option>
-        <option value="10" selected>In 10 years</option>
-        <option value="20">In 20 years</option>
-      </select>
-    </div>
-    <ul class="button-group">
-      <li>
-        <button type="submit" class="secondary" tabindex="6">
-          <i class="icon-save"></i>
-          Save
-        </button>
-      </li>
-      <li>
-        <button id="letter-save" type="button" tabindex="7">
-          <i class="icon-rocket"></i>
-          Finish &amp; Send Letter;
-        </button>
-      </li>
-    </ul>
-  </form>
+<div>
+  <div class="row">
+    <form class="letter-form large-12 small-12 columns custom">
+      <div>
+        <input id="letter-title" type="text" placeholder="Title..." value="{{title}}" tabindex="1" autofocus></input>
+      </div>
+      <div>
+        <textarea id="letter-content" rows="10" placeholder="Content..." tabindex="2">{{content}}</textarea>
+      </div>
+      <div>
+        <select id="letter-years" name="years" class="medium custom dropdown">
+          <option value="1">In 1 year</option>
+          <option value="5">In 5 years</option>
+          <option value="10" selected>In 10 years</option>
+          <option value="20">In 20 years</option>
+        </select>
+      </div>
+      <ul class="button-group">
+        <li>
+          <button type="submit" class="secondary" tabindex="6">
+            <i class="icon-save"></i>
+            Save
+          </button>
+        </li>
+        <li>
+          <button id="letter-save" type="button" tabindex="7">
+            <i class="icon-rocket"></i>
+            Finish &amp; Send Letter
+          </button>
+        </li>
+      </ul>
+    </form>
+  </div>
 </div>

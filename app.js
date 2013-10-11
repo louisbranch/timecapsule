@@ -11,6 +11,7 @@ var port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname + "/public")));
 app.use(express.cookieParser());
 app.use(express.bodyParser());
+app.use(express.methodOverride());
 app.use(express.session({
   store: new RedisStore({
     host: "localhost",

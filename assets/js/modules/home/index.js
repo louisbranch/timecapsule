@@ -18,6 +18,10 @@ define([
     },
 
     index: function () {
+      if (window.user) {
+        this.mediator.trigger("navigate", "/letters");
+        return;
+      }
     }
 
   });
