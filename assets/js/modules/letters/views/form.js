@@ -14,7 +14,7 @@ define([
     template: template,
 
     events: {
-      "click #letter-send" : "send",
+      "click #letter-save" : "save",
       "submit form"        : "save"
     },
 
@@ -23,15 +23,6 @@ define([
       var data = this.data();
       this.model.save(data);
       return false;
-    },
-
-    /*
-     * Save locally and send model to the
-     * server
-     */
-    send: function () {
-      this.save();
-      this.model.send();
     },
 
     /* Serialize model attrs to template */

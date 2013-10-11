@@ -49,15 +49,6 @@ define([
     },
 
     /*
-     * Save model if it is valid to the server
-     * using default Backbone sync method
-     */
-    send: function (data) {
-      if (!this.isValid()) return;
-      Backbone.ajaxSync("update", this);
-    },
-
-    /*
      * Generates a random color unless
      * model already has one
      */

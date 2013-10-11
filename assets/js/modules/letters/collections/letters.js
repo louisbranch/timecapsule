@@ -4,8 +4,7 @@
 define([
   "app",
   "modules/letters/models/letter",
-  "backbone",
-  "localStorage"
+  "backbone"
 ], function (
   App,
   Letter,
@@ -15,8 +14,6 @@ define([
   return App.Collection.extend({
 
     model: Letter,
-
-    localStorage: new Backbone.LocalStorage("letters"),
 
     url: "/letters",
 

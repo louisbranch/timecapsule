@@ -19,7 +19,7 @@ define([
     },
 
     events: {
-      "click .icon-rocket" : "send",
+      "click .icon-rocket" : "save",
       "click .icon-trash"  : "destroy"
     },
 
@@ -27,8 +27,8 @@ define([
       return this.model.present();
     },
 
-    send: function () {
-      this.model.send();
+    save: function () {
+      this.model.save();
       return false;
     },
 

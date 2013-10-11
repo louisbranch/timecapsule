@@ -19,7 +19,7 @@ define([
 
     initialize: function (options) {
       this.collection = new Letters([], {mediator: this.mediator});
-      this.collection.fetch();
+      this.collection.fetch({reset: true});
     },
 
     routes: {
@@ -29,7 +29,7 @@ define([
     },
 
     index: function () {
-      this.collection.fetch();
+      this.collection.fetch({reset: true});
       var view = new IndexView({collection: this.collection});
       this.mediator.trigger("render", {view: view, url: "/letters"});
     },
