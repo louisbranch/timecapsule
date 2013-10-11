@@ -17160,9 +17160,9 @@ define('app',[
 });
 
 /*
- * Navigation bar view
+ * Header View
  */
-define('modules/layout/views/navbar',[
+define('modules/layout/views/header',[
   "app"
 ], function (
   App
@@ -17222,9 +17222,9 @@ define('modules/layout/views/navbar',[
 });
 
 /*
- * Main menu for mobile devices
+ * Mobile Menu View
  */
-define('modules/layout/views/menu',[
+define('modules/layout/views/mobile_menu',[
   "app"
 ], function (
   App
@@ -17232,7 +17232,7 @@ define('modules/layout/views/menu',[
 
   return App.View.extend({
 
-    template: "#main-mobile-menu",
+    template: "#template-mobile-menu",
 
     initialize: function (options) {
       this.listenTo(this.mediator, "mobile:menu", this.toggleMenu);
@@ -17262,7 +17262,7 @@ define('modules/layout/views/menu',[
 /*
  * Main Layout Content
  */
-define('modules/layout/views/content',[
+define('modules/layout/views/main',[
   "app"
 ], function (
   App
@@ -17308,25 +17308,25 @@ define('modules/layout/views/content',[
 define('modules/layout/index',[
   "app",
   "jquery",
-  "modules/layout/views/navbar",
-  "modules/layout/views/menu",
-  "modules/layout/views/content"
+  "modules/layout/views/header",
+  "modules/layout/views/mobile_menu",
+  "modules/layout/views/main"
 ], function (
   App,
   $,
-  NavbarView,
-  MenuView,
-  MainContentView
+  Header,
+  MobileMenu,
+  MainContent
 ) {
 
   return App.View.extend({
 
     id: "main-layout",
 
-    initialize: function (options) {
-      this.navigation = new NavbarView({mediator: this.mediator});
-      this.mobileMenu = new MenuView({mediator: this.mediator});
-      this.mainContent = new MainContentView({mediator: this.mediator});
+    initialize: function () {
+      this.header = new Header({mediator: this.mediator});
+      this.mobile = new MobileMenu({mediator: this.mediator});
+      this.main = new MainContent({mediator: this.mediator});
 
       this.mediator.require("autoLinks", function (service) {
         service.enable();
@@ -17340,7 +17340,7 @@ define('modules/layout/index',[
     beforeRender: function () {
       $(".wrap").hide();
       this.insertViews({
-        "": [this.navigation, this.mobileMenu, this.mainContent]
+        "": [this.header, this.mobile, this.main]
       });
     }
 

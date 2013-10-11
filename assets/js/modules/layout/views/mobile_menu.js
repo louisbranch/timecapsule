@@ -9,7 +9,7 @@ define([
 
   return App.View.extend({
 
-    template: "#main-mobile-menu",
+    template: "#template-mobile-menu",
 
     initialize: function (options) {
       this.listenTo(this.mediator, "mobile:menu", this.toggleMenu);

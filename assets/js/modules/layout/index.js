@@ -6,7 +6,7 @@ define([
   "jquery",
   "modules/layout/views/header",
   "modules/layout/views/mobile_menu",
-  "modules/layout/views/main_content"
+  "modules/layout/views/main"
 ], function (
   App,
   $,
