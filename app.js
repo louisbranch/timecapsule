@@ -2,6 +2,7 @@ var express = require("express");
 var path = require("path");
 var passport = require("passport");
 var app = module.exports = express();
+var RedisStore = require('connect-redis')(express);
 var port = process.env.PORT || 8080;
 
 /*
@@ -10,9 +11,20 @@ var port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname + "/public")));
 app.use(express.cookieParser());
 app.use(express.bodyParser());
-app.use(express.session({secret: process.env.SECRET || "trolololo"}));
+app.use(express.session({
+  store: new RedisStore({
+    host: "localhost",
+    port: process.env.REDIS_PORT || 6380,
+    db: "timecapsule"
+  }),
+  secret: process.env.SECRET || "trolololo"
+}));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(function (req, res, next) {
+  if (req.user) res.locals.user = req.user;
+  next();
+});
 
 /*
  * App Modules

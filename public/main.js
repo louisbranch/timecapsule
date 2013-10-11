@@ -18326,6 +18326,7 @@ define('modules/services/authentication',[
 
   Authentication.prototype.enable = function () {
     navigator.id.watch({
+      loggedInUser: window.user,
       onlogin: this._onLogin.bind(this),
       onlogout: this._onLogout.bind(this)
     });
