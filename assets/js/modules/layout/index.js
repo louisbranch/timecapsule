@@ -4,25 +4,25 @@
 define([
   "app",
   "jquery",
-  "modules/layout/views/navbar",
-  "modules/layout/views/menu",
-  "modules/layout/views/content"
+  "modules/layout/views/header",
+  "modules/layout/views/mobile_menu",
+  "modules/layout/views/main_content"
 ], function (
   App,
   $,
-  NavbarView,
-  MenuView,
-  MainContentView
+  Header,
+  MobileMenu,
+  MainContent
 ) {
 
   return App.View.extend({
 
     id: "main-layout",
 
-    initialize: function (options) {
-      this.navigation = new NavbarView({mediator: this.mediator});
-      this.mobileMenu = new MenuView({mediator: this.mediator});
-      this.mainContent = new MainContentView({mediator: this.mediator});
+    initialize: function () {
+      this.header = new Header({mediator: this.mediator});
+      this.mobile = new MobileMenu({mediator: this.mediator});
+      this.main = new MainContent({mediator: this.mediator});
 
       this.mediator.require("autoLinks", function (service) {
         service.enable();
@@ -36,7 +36,7 @@ define([
     beforeRender: function () {
       $(".wrap").hide();
       this.insertViews({
-        "": [this.navigation, this.mobileMenu, this.mainContent]
+        "": [this.header, this.mobile, this.main]
       });
     }
 

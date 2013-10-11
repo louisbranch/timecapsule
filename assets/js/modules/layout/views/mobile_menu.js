@@ -1,5 +1,5 @@
 /*
- * Main menu for mobile devices
+ * Mobile Menu View
  */
 define([
   "app"

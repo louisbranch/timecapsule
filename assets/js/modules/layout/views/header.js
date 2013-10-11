@@ -1,5 +1,5 @@
 /*
- * Navigation bar view
+ * Header View
  */
 define([
   "app"
